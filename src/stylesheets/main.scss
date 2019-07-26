@@ -1,0 +1,135 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.row {
+  width: 100%;
+}
+
+.body-div {
+  margin-top: 5em;
+  width: 100%;
+}
+
+.simpleLink {
+  text-decoration: underline !important;
+  cursor: pointer;
+}
+
+a {
+  font-size: 1rem;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.paddLeft {
+  padding-left: 10px;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+select.form-control[multiple],
+select.form-control[size] {
+  height: auto;
+  min-height: 700px;
+}
+
+.infoform {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.container__editor {
+  font-size: 12px;
+  font-variant-ligatures: common-ligatures;
+  background-color: #fafafa;
+  border-radius: 3px;
+  counter-reset: line;
+  min-height: 30rem;
+}
+
+.container_editor_line_number:before {
+  //position: absolute;
+  right: 100%;
+  margin-right: 10px;
+  text-align: right;
+  opacity: 0.3;
+  user-select: none;
+  counter-increment: line;
+  content: counter(line);
+}
+
+.container__editor textarea {
+  outline: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.rightClose {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.rst__rowContents {
+  min-width: 200px;
+  border-radius: 0 5px 5px 0;
+  border: 1px solid cadetblue;
+  box-shadow: 0 0 0 0;
+}
+
+.rst__toolbarButton {
+  padding-right: 2px;
+}
+
+.rst__rowTitle {
+  font-weight: 100;
+  font-size: 1rem;
+}
+
+.rst__moveHandle {
+  border-radius: 5px 0 0 5px;
+  background-color: cadetblue;
+}
+
+.generic-button {
+  color: cadetblue;
+  cursor: pointer;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid cadetblue;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: black;
+  background-color: #fff;
+  border-color: cadetblue cadetblue #fff;
+}
+
+.nav-tabs .nav-link {
+  color: cadetblue;
+}
+
+.uiSchemaForm {
+  padding: 1rem;
+  margin: 1rem;
+}
