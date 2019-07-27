@@ -6,10 +6,7 @@ import SortableTree, {
 } from "react-sortable-tree";
 import isEmpty from "lodash/isEmpty";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMinusCircle,
-  faArrowCircleRight
-} from "@fortawesome/free-solid-svg-icons";
+import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 import { defaultTree } from "../../../utils/constants";
 
@@ -44,6 +41,9 @@ const JsonFormSettingsForm = props => {
         el.node.subtitle === "Number";
 
       return (
+        (jsonForm.length === 1 &&
+          (flatData[0].node.title === "properties" ||
+            flatData[0].node.title === "items")) ||
         (isPrimitive && !isEmpty(el.node.children)) ||
         jsonForm.length > 1 ||
         (isPrimitive &&
@@ -64,10 +64,6 @@ const JsonFormSettingsForm = props => {
     setCurrentNode({ node, path });
   };
 
-  const onChangeSchemaEditor = data => {
-    setTree(data);
-  };
-
   const log = type => console.log.bind(console, type);
 
   const getButtons = ({ node, path }) => {
@@ -76,10 +72,10 @@ const JsonFormSettingsForm = props => {
       <FontAwesomeIcon
         icon={faMinusCircle}
         onClick={() => remove(path)}
-        className="generic-button"
+        className="generic-button-red"
       />,
       <FontAwesomeIcon
-        icon={faArrowCircleRight}
+        icon={faPlusCircle}
         onClick={() => setCurrentForm(node, path)}
         className="generic-button"
       />

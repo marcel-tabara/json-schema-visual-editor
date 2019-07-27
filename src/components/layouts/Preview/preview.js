@@ -35,48 +35,53 @@ const Preview = props => {
         </button>
       </Form>
       <div className="container_editor_area">
-        <AceEditor
-          mode="json"
-          theme="xcode"
-          onChange={onChange}
-          name="UNIQUE_ID_OF_DIV"
-          editorProps={{ $blockScrolling: true }}
-          setOptions={{
-            enableBasicAutocompletion: true,
-            enableLiveAutocompletion: true,
-            enableSnippets: false,
-            showLineNumbers: true,
-            tabSize: 2
-          }}
-          fontSize={12}
-          showPrintMargin={true}
-          showGutter={true}
-          highlightActiveLine={true}
-          value={schemaCode}
-          height="350px"
-        />
-      </div>
-      <div className="container_editor_area">
-        <AceEditor
-          mode="json"
-          theme="xcode"
-          onChange={onChange}
-          name="UNIQUE_ID_OF_DIV"
-          editorProps={{ $blockScrolling: true }}
-          setOptions={{
-            enableBasicAutocompletion: true,
-            enableLiveAutocompletion: true,
-            enableSnippets: false,
-            showLineNumbers: true,
-            tabSize: 2
-          }}
-          fontSize={12}
-          showPrintMargin={true}
-          showGutter={true}
-          highlightActiveLine={true}
-          value={uiSchemaCode}
-          height="350px"
-        />
+        <div className="editor-box">
+          <div>Schema</div>
+          <AceEditor
+            mode="json"
+            theme="xcode"
+            onChange={onChange}
+            name="schemaEditor"
+            editorProps={{ $blockScrolling: true }}
+            setOptions={{
+              enableBasicAutocompletion: true,
+              enableLiveAutocompletion: true,
+              enableSnippets: false,
+              showLineNumbers: true,
+              tabSize: 2
+            }}
+            fontSize={12}
+            showPrintMargin={true}
+            showGutter={true}
+            highlightActiveLine={true}
+            value={schemaCode}
+            height="350px"
+          />
+        </div>
+
+        <div className="editor-box">
+          <div>UISchema</div>
+          <AceEditor
+            mode="json"
+            theme="xcode"
+            onChange={onChange}
+            name="uiSchemaEditor"
+            editorProps={{ $blockScrolling: true }}
+            setOptions={{
+              enableBasicAutocompletion: true,
+              enableLiveAutocompletion: true,
+              enableSnippets: false,
+              showLineNumbers: true,
+              tabSize: 2
+            }}
+            fontSize={12}
+            showPrintMargin={true}
+            showGutter={true}
+            highlightActiveLine={true}
+            value={uiSchemaCode}
+            height="350px"
+          />
+        </div>
       </div>
     </>
   );

@@ -267,7 +267,7 @@ const JsonFormInfoForm = props => {
 
   const log = type => console.log.bind(console, type);
   return (
-    <div className="infoform">
+    <div className="infoform-body">
       <div className="rightClose">
         <FontAwesomeIcon
           className="generic-button"

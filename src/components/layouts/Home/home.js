@@ -44,7 +44,7 @@ const Home = props => {
         </Nav.Item>
       </Nav>
 
-      <div>{mainRender()}</div>
+      <div className="main-body">{mainRender()}</div>
     </div>
   );
 };

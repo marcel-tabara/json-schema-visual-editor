@@ -26,14 +26,13 @@ export const generateJsonUISchemaCode = props => {
           element => element.node.title === el.title
         );
 
-        const hasUiOptions =
-          !isEmpty(uiSchema) &&
-          (uiSchema.uiOptions.uiInline ||
-            uiSchema.uiOptions.backgroundColor ||
-            uiSchema.uiOptions.classNames ||
-            uiSchema.uiOptions.inputType ||
-            uiSchema.uiOptions.label ||
-            uiSchema.uiOptions.rows);
+        const hasUiOptions = !isEmpty(uiSchema); // &&
+        // (uiSchema.uiOptions.uiInline ||
+        //   uiSchema.uiOptions.backgroundColor ||
+        //   uiSchema.uiOptions.classNames ||
+        //   uiSchema.uiOptions.inputType ||
+        //   uiSchema.uiOptions.label ||
+        //   uiSchema.uiOptions.rows);
 
         if (!isEmpty(flatElement)) parent = flatElement.parentNode;
         if (!isEmpty(parent)) {
@@ -43,15 +42,15 @@ export const generateJsonUISchemaCode = props => {
             : false;
         }
 
-        if (isChild && parent.type === 'object' && el.title !== 'properties') {
+        if (isChild && parent.type === "object" && el.title !== "properties") {
           if (!isEmpty(el.title)) code += `"${el.title}": {`;
         }
 
-        if (isChild && parent.type === 'array' && el.title === 'items') {
+        if (isChild && parent.type === "array" && el.title === "items") {
           if (!isEmpty(el.title)) code += `"${el.title}": [`;
         }
 
-        if (isChild && parent.type === 'array' && el.title !== 'items') {
+        if (isChild && parent.type === "array" && el.title !== "items") {
           if (!isEmpty(el.title)) code += `{`;
         }
 
@@ -118,19 +117,34 @@ export const generateJsonUISchemaCode = props => {
         if (has(uiSchema, "uiWidget.widget") && uiSchema.uiWidget.widget)
           code += `"ui:widget": "${uiSchema.uiWidget.widget}",`;
 
-        if (isChild && parent.type === 'object' && isLastChild && el.title !== 'properties') {
+        if (
+          isChild &&
+          parent.type === "object" &&
+          isLastChild &&
+          el.title !== "properties"
+        ) {
           if (!isEmpty(el.title)) code += `},`;
         }
 
-        if (isChild && parent.type === 'array' && el.title !== 'items') {
+        if (isChild && parent.type === "array" && el.title !== "items") {
           if (!isEmpty(el.title)) code += `},`;
         }
 
-        if (isChild && parent.type === 'array' && isLastChild && el.title === 'items') {
+        if (
+          isChild &&
+          parent.type === "array" &&
+          isLastChild &&
+          el.title === "items"
+        ) {
           if (!isEmpty(el.title)) code += `],`;
         }
 
-        if (isChild && parent.type === 'object' && !isLastChild && el.title !== 'properties') {
+        if (
+          isChild &&
+          parent.type === "object" &&
+          !isLastChild &&
+          el.title !== "properties"
+        ) {
           if (!isEmpty(el.title)) code += `},`;
         }
 

@@ -231,19 +231,6 @@ const JsonFormUISettingsForm = props => {
 
   const onChange = data => {
     console.log("JsonFormUISettingsForm changed", data, schema);
-    const { formData } = data;
-
-    const newNode = { ...node };
-    newNode.uiSchema = formData;
-
-    const newTree = changeNodeAtPath({
-      treeData: tree,
-      path,
-      getNodeKey,
-      newNode
-    });
-
-    setTree(newTree);
   };
 
   const onSubmit = data => {
@@ -265,7 +252,7 @@ const JsonFormUISettingsForm = props => {
 
   const showForm = () => {
     return (
-      <div className="uiSchemaForm">
+      <div className="infoform-body">
         <Form
           schema={schema}
           uiSchema={uiSchema}
@@ -279,20 +266,26 @@ const JsonFormUISettingsForm = props => {
     );
   };
 
-  const getButton = (node, path) => {
+  const getButtonClass = path => {
+    return isEqual(path, get(currentUINode, "path", null))
+      ? "generic-button-selected"
+      : "generic-button";
+  };
+
+  const getButtons = (node, path) => {
     if (node.title === "properties" || node.title === "items") return [];
     return [
       <FontAwesomeIcon
         icon={faPlusCircle}
         onClick={() => setCurrentUINode({ node, path })}
-        className="generic-button"
+        className={getButtonClass(path)}
       />
     ];
   };
 
   const log = type => console.log.bind(console, type);
   return (
-    <div className="flex mainContainer">
+    <div className="flex">
       <div
         style={{
           width: "45%",
@@ -307,11 +300,11 @@ const JsonFormUISettingsForm = props => {
           shouldCopyOnOutsideDrop={shouldCopyOnOutsideDrop}
           getNodeKey={getNodeKey}
           generateNodeProps={({ node, path }) => ({
-            buttons: getButton(node, path)
+            buttons: getButtons(node, path)
           })}
         />
       </div>
-      <div>{currentType && showForm()}</div>
+      {currentType && showForm()}
     </div>
   );
 };

@@ -54,6 +54,13 @@ select.form-control[size] {
   padding: 1rem;
 }
 
+.infoform-body {
+  border: 1px solid #9ea05f;
+  border-radius: 5px;
+  margin: 1rem;
+  padding: 1rem;
+}
+
 .container__editor {
   font-size: 12px;
   font-variant-ligatures: common-ligatures;
@@ -110,8 +117,21 @@ select.form-control[size] {
 }
 
 .generic-button {
-  color: cadetblue;
+  color: #5fa061;
   cursor: pointer;
+}
+
+.generic-button-red {
+  color: #a0615f;
+  cursor: pointer;
+}
+
+.generic-button-selected {
+  background-color: #a0615f;
+}
+
+.main-body {
+  margin-top: 1rem;
 }
 
 .nav-tabs {
@@ -120,7 +140,7 @@ select.form-control[size] {
 
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
-  color: black;
+  color: #5fa061;
   background-color: #fff;
   border-color: cadetblue cadetblue #fff;
 }
@@ -132,4 +152,18 @@ select.form-control[size] {
 .uiSchemaForm {
   padding: 1rem;
   margin: 1rem;
+}
+
+.container_editor_area {
+  display: flex;
+}
+
+.rst__placeholder::before {
+  border: 1px dashed #9ea05f;
+}
+
+.rst__moveHandle,
+.rst__loadingHandle {
+  border: 0;
+  box-shadow: 0 0 0 0;
 }
