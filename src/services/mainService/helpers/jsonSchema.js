@@ -70,6 +70,9 @@ export const generateJsonSchemaCode = props => {
 
         if (!isEmpty(el.children)) prepareJsonFormCode(el.children);
 
+        if (!isEmpty(el.excludeMinimum)) code += `"excludeMinimum": ${el.excludeMinimum},`;
+        if (!isEmpty(el.excludeMaximum)) code += `"excludeMaximum": ${el.excludeMaximum},`;
+        if (!isEmpty(el.pattern)) code += `"pattern": "${el.pattern}",`;
         if (!isEmpty(el.minimum)) code += `"minimum": ${el.minimum},`;
         if (!isEmpty(el.maximum)) code += `"maximum": ${el.maximum},`;
         if (!isEmpty(el.minLength)) code += `"minLength": ${el.minLength},`;

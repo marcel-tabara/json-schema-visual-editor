@@ -37,6 +37,7 @@ const JsonFormInfoForm = props => {
         "description",
         "defaultValue",
         "format",
+        "pattern",
         "minLength",
         "maxLength",
         "enumVal",
@@ -50,7 +51,10 @@ const JsonFormInfoForm = props => {
         "description",
         "defaultValue",
         "minimum",
+        "excludeMinimum",
         "maximum",
+        "excludeMaximum",
+        "multipleOf",
         "enumVal",
         "enumNames",
         "isRequired"
@@ -145,6 +149,11 @@ const JsonFormInfoForm = props => {
         type: "string",
         title: "maxLength",
         default: ""
+      },
+      pattern: {
+        type: "string",
+        title: "pattern",
+        default: ""
       }
     };
   }
@@ -161,17 +170,21 @@ const JsonFormInfoForm = props => {
         type: "string",
         title: "Maximum",
         default: ""
-      }
-    };
-  }
-
-  if (node.subtitle === "Integer") {
-    schema.properties = {
-      ...schema.properties,
+      },
       multipleOf: {
         type: "string",
         title: "multipleOf",
         default: ""
+      },
+      excludeMinimum: {
+        type: "boolean",
+        title: "excludeMinimum",
+        default: false
+      },
+      excludeMaximum: {
+        type: "boolean",
+        title: "excludeMaximum",
+        default: false
       }
     };
   }
@@ -197,7 +210,7 @@ const JsonFormInfoForm = props => {
     };
   }
 
-  if (node.subtitle !== "Object") {
+  if (node.subtitle !== "Object" && node.subtitle !== "Array") {
     schema.properties = {
       ...schema.properties,
       enumVal: {
@@ -229,7 +242,10 @@ const JsonFormInfoForm = props => {
       minimum,
       maximum,
       minLength,
-      maxLength
+      maxLength,
+      pattern,
+      excludeMinimum,
+      excludeMaximum
     } = data.formData;
 
     const newNode = { ...node };
@@ -251,6 +267,10 @@ const JsonFormInfoForm = props => {
     newNode.maximum = maximum;
     newNode.minLength = minLength;
     newNode.maxLength = maxLength;
+
+    newNode.excludeMinimum = excludeMinimum;
+    newNode.excludeMaximum = excludeMaximum;
+    newNode.pattern = pattern;
 
     const newTree = changeNodeAtPath({
       treeData: tree,

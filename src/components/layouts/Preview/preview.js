@@ -36,7 +36,7 @@ const Preview = props => {
       </Form>
       <div className="container_editor_area">
         <div className="editor-box">
-          <div>Schema</div>
+          <div className='labelStyle'>Schema</div>
           <AceEditor
             mode="json"
             theme="xcode"
@@ -60,7 +60,7 @@ const Preview = props => {
         </div>
 
         <div className="editor-box">
-          <div>UISchema</div>
+          <div className='labelStyle'>UISchema</div>
           <AceEditor
             mode="json"
             theme="xcode"
