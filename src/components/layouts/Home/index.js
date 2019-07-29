@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 
 const mapStateToProps = state => ({
   tree: state.mainReducer.tree,
-  currentNode: state.mainReducer.currentNode
+  currentNode: state.mainReducer.currentNode,
+  error: state.mainReducer.error
 });
 
 export default connect(

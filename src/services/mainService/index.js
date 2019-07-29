@@ -3,7 +3,8 @@ import axios from "axios";
 import { SET_TREE } from "./actionTypes";
 import { generateJsonSchemaCode } from "./helpers/jsonSchema";
 import { generateJsonUISchemaCode } from "./helpers/jsonUISchema";
-import { setUISchemaCode, setSchemaCode } from "./actions";
+import { setUISchemaCode, setSchemaCode, setError } from "./actions";
+import { validateSchema } from "./helpers/helper";
 
 export function* watchSetTree(action) {
   console.log("console: saga", action);
@@ -29,9 +30,12 @@ export function* watchSetJsonForm() {
           parser
         })
       : "";
-    yield put(setSchemaCode(prettyJsonFormSchemaCode.data));
+    const schema = prettyJsonFormSchemaCode.data || {};
+    yield put(setSchemaCode(schema));
+    validateSchema(schema);
+    yield put(setError(""));
   } catch (e) {
-    console.log("console: error", e);
+    yield put(setError(e));
   }
 
   const prettyJsonFormUISchemaCode = jsonFormUISchemaCode

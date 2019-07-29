@@ -24,3 +24,8 @@ export const setUISchemaCode = uiSchemaCode => ({
   type: actionTypes.SET_UISCHEMA_CODE,
   uiSchemaCode
 });
+
+export const setError = error => ({
+  type: actionTypes.SET_ERROR,
+  error
+});

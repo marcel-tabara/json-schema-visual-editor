@@ -5,7 +5,8 @@ export const initialState = () => ({
   currentNode: [],
   currentUINode: [],
   schemaCode: "",
-  uiSchemaCode: ""
+  uiSchemaCode: "",
+  error: ""
 });
 
 export default (state = initialState(), action) => {
@@ -39,6 +40,11 @@ export default (state = initialState(), action) => {
       return {
         ...state,
         tree: action.tree
+      };
+    case actionTypes.SET_ERROR:
+      return {
+        ...state,
+        error: action.error
       };
     default:
       return state;

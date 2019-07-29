@@ -170,6 +170,12 @@ select.form-control[size] {
 
 .labelStyle {
   font-size: 1.1rem;
-  background-color: #9ea05f;
+  background-color: #f0f0e6;
   padding: 0.5rem 3rem;
+  border-radius: 5px 5px 0 0;
+  margin-right: 1rem;
+}
+
+.alertBox {
+  margin-top: 1rem;
 }

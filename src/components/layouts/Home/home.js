@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import Alert from "react-bootstrap/Alert";
 import "react-sortable-tree/style.css";
 import isEmpty from "lodash/isEmpty";
+import has from "lodash/has";
 import Nav from "react-bootstrap/Nav";
 import JsonFormSettingsForm from "../JsonFormSettingsForm";
 import JsonFormInfoForm from "../JsonFormInfoForm";
@@ -9,7 +11,7 @@ import Preview from "../Preview";
 import "../../../stylesheets/main.scss";
 
 const Home = props => {
-  const { currentNode } = props;
+  const { currentNode, error } = props;
   const [view, setView] = useState("schema");
 
   const renderView = () =>
@@ -24,6 +26,16 @@ const Home = props => {
       <JsonFormUISettingsForm />
     );
   };
+
+  const showError = () => {
+    if (!has(error, "message")) return null;
+    return (
+      <div className="alertBox">
+        <Alert variant="danger">{error.message}</Alert>
+      </div>
+    );
+  };
+
   return (
     <div className="infoform">
       <Nav fill variant="tabs" defaultActiveKey="schema">
@@ -43,7 +55,7 @@ const Home = props => {
           </Nav.Link>
         </Nav.Item>
       </Nav>
-
+      {showError()}
       <div className="main-body">{mainRender()}</div>
     </div>
   );
