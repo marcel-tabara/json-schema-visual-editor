@@ -26,7 +26,7 @@ export const generateJsonUISchemaCode = props => {
           element => element.node.title === el.title
         );
 
-        const hasUiOptions = !isEmpty(uiSchema); // &&
+        const hasUiOptions = uiSchema && !isEmpty(uiSchema.uiOptions); // &&
         // (uiSchema.uiOptions.uiInline ||
         //   uiSchema.uiOptions.backgroundColor ||
         //   uiSchema.uiOptions.classNames ||
@@ -69,8 +69,17 @@ export const generateJsonUISchemaCode = props => {
         // uiOptions
         if (hasUiOptions) code += `"ui:options": {`;
 
+        if (has(uiSchema, "uiOptions.addable"))
+          code += `"addable": ${uiSchema.uiOptions.addable},`;
+
+        if (has(uiSchema, "uiOptions.orderable"))
+          code += `"orderable": ${uiSchema.uiOptions.orderable},`;
+
+        if (has(uiSchema, "uiOptions.removable"))
+          code += `"removable": ${uiSchema.uiOptions.removable},`;
+
         if (has(uiSchema, "uiOptions.uiInline"))
-          code += `"inline": ${uiSchema.uiMore.uiInline},`;
+          code += `"inline": ${uiSchema.uiOptions.uiInline},`;
         if (
           has(uiSchema, "uiOptions.backgroundColor") &&
           uiSchema.uiOptions.backgroundColor

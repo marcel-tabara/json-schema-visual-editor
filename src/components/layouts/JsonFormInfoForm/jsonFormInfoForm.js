@@ -74,16 +74,7 @@ const JsonFormInfoForm = props => {
       ];
     }
     if (node.subtitle === "Array") {
-      return [
-        "title",
-        "description",
-        "defaultValue",
-        "minItems",
-        "maxItems",
-        "enumVal",
-        "enumNames",
-        "uniqueItems"
-      ];
+      return ["title", "description", "minItems", "maxItems", "uniqueItems"];
     }
     if (node.subtitle === "Object") {
       return ["title", "description", "defaultValue"];
