@@ -50,8 +50,17 @@ export const generateJsonSchemaCode = props => {
           if (!isEmpty(el.title)) code += `"${el.title}": {`;
         }
 
-        if (isChild && parent.type === "array" && el.title === "items") {
-          if (!isEmpty(el.title)) code += `"${el.title}": [`;
+        if (
+          isChild &&
+          parent.type === "array" &&
+          el.title === "items" &&
+          !isEmpty(el.title)
+        ) {
+          if (el.children && el.children.length > 1) {
+            code += `"${el.title}": [`;
+          } else {
+            code += `"${el.title}": `;
+          }
         }
 
         if (isChild && parent.type === "array" && el.title !== "items") {
@@ -103,9 +112,12 @@ export const generateJsonSchemaCode = props => {
           isChild &&
           parent.type === "array" &&
           isLastChild &&
-          el.title === "items"
+          el.title === "items" &&
+          !isEmpty(el.title)
         ) {
-          if (!isEmpty(el.title)) code += `],`;
+          if (el.children && el.children.length > 1) {
+            code += `],`;
+          }
         }
 
         if (isChild && parent.type === "object" && !isLastChild) {

@@ -26,13 +26,7 @@ export const generateJsonUISchemaCode = props => {
           element => element.node.title === el.title
         );
 
-        const hasUiOptions = uiSchema && !isEmpty(uiSchema.uiOptions); // &&
-        // (uiSchema.uiOptions.uiInline ||
-        //   uiSchema.uiOptions.backgroundColor ||
-        //   uiSchema.uiOptions.classNames ||
-        //   uiSchema.uiOptions.inputType ||
-        //   uiSchema.uiOptions.label ||
-        //   uiSchema.uiOptions.rows);
+        const hasUiOptions = uiSchema && !isEmpty(uiSchema.uiOptions);
 
         if (!isEmpty(flatElement)) parent = flatElement.parentNode;
         if (!isEmpty(parent)) {

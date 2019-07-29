@@ -1,10 +1,10 @@
 import React from "react";
-import Form from "react-jsonschema-form";
 import isEmpty from "lodash/isEmpty";
 import has from "lodash/has";
 import AceEditor from "react-ace";
 import "brace/mode/jsx";
 import "brace/theme/xcode";
+import Form from "react-jsonschema-form-bs4";
 
 const Preview = props => {
   let { schemaCode, uiSchemaCode, error } = props;

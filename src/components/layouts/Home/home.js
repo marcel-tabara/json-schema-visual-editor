@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Alert from "react-bootstrap/Alert";
-import "react-sortable-tree/style.css";
 import isEmpty from "lodash/isEmpty";
 import has from "lodash/has";
 import Nav from "react-bootstrap/Nav";
+import "react-sortable-tree/style.css";
 import JsonFormSettingsForm from "../JsonFormSettingsForm";
 import JsonFormInfoForm from "../JsonFormInfoForm";
 import JsonFormUISettingsForm from "../JsonFormUISettingsForm";
