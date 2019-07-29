@@ -1,12 +1,13 @@
 import React from "react";
 import Form from "react-jsonschema-form";
 import isEmpty from "lodash/isEmpty";
+import has from "lodash/has";
 import AceEditor from "react-ace";
 import "brace/mode/jsx";
 import "brace/theme/xcode";
 
 const Preview = props => {
-  let { schemaCode, uiSchemaCode } = props;
+  let { schemaCode, uiSchemaCode, error } = props;
   if (isEmpty(schemaCode)) schemaCode = "{}";
   if (isEmpty(uiSchemaCode)) uiSchemaCode = "{}";
 
@@ -21,8 +22,9 @@ const Preview = props => {
     return null;
   };
 
-  return (
-    <>
+  const showFormPreview = () => {
+    if (has(error, "message")) return null;
+    return (
       <Form
         schema={JSON.parse(schemaCode)}
         uiSchema={JSON.parse(uiSchemaCode)}
@@ -34,9 +36,15 @@ const Preview = props => {
           Submit
         </button>
       </Form>
+    );
+  };
+
+  return (
+    <>
+      {showFormPreview()}
       <div className="container_editor_area">
         <div className="editor-box">
-          <div className='labelStyle'>Schema</div>
+          <div className="labelStyle">Schema</div>
           <AceEditor
             mode="json"
             theme="xcode"
@@ -60,7 +68,7 @@ const Preview = props => {
         </div>
 
         <div className="editor-box">
-          <div className='labelStyle'>UISchema</div>
+          <div className="labelStyle">UISchema</div>
           <AceEditor
             mode="json"
             theme="xcode"

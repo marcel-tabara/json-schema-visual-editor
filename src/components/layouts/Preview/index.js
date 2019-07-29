@@ -1,19 +1,17 @@
 import Preview from "./preview";
 import { connect } from "react-redux";
-import {
-  setTree,
-  setCurrentNode,
-} from '../../../services/mainService/actions';
+import { setTree, setCurrentNode } from "../../../services/mainService/actions";
 
 const mapStateToProps = state => ({
   schemaCode: state.mainReducer.schemaCode,
   uiSchemaCode: state.mainReducer.uiSchemaCode,
+  error: state.mainReducer.error
 });
 
 const mapDispatchToProps = {
   setTree,
   setCurrentNode
-}
+};
 
 export default connect(
   mapStateToProps,
