@@ -50,12 +50,7 @@ export const generateJsonSchemaCode = props => {
           if (!isEmpty(el.title)) code += `"${el.title}": {`;
         }
 
-        if (
-          isChild &&
-          parent.type === "array" &&
-          el.title === "items" &&
-          !isEmpty(el.title)
-        ) {
+        if (isChild && parent.type === "array" && el.title === "items") {
           if (el.children && el.children.length > 1) {
             code += `"${el.title}": [`;
           } else {
@@ -112,8 +107,7 @@ export const generateJsonSchemaCode = props => {
           isChild &&
           parent.type === "array" &&
           isLastChild &&
-          el.title === "items" &&
-          !isEmpty(el.title)
+          el.title === "items"
         ) {
           if (el.children && el.children.length > 1) {
             code += `],`;
