@@ -26,6 +26,11 @@ export const generateJsonUISchemaCode = props => {
         const flatElement = flatData.find(
           element => element.node.title === el.title
         );
+        const isPrimitive =
+          el.subtitle === "String" ||
+          el.subtitle === "Integer" ||
+          el.subtitle === "Boolean" ||
+          el.subtitle === "Number";
 
         const hasUiOptions = uiSchema && !isEmpty(uiSchema.uiOptions);
 
@@ -43,10 +48,20 @@ export const generateJsonUISchemaCode = props => {
         if (
           isChild &&
           parent.type === "object" &&
+          el.title === "properties" &&
+          !isEmpty(el.title)
+        ) {
+          if (isFirstChild && el.type === 'Object') code += `{`;
+        }
+
+
+        if (
+          isChild &&
+          parent.type === "object" &&
           el.title !== "properties" &&
           !isEmpty(el.title)
         ) {
-          if (isFirstChild) code += `{`;
+          if (isFirstChild && el.type === 'Object') code += `{`;
           code += `"${el.title}": {`;
         }
 
@@ -146,7 +161,7 @@ export const generateJsonUISchemaCode = props => {
           el.title !== "properties" &&
           !isEmpty(el.title)
         ) {
-          if (isLastChild) code += `}`;
+          //if (isLastChild) code += `}`;
           code += `},`;
         }
 
@@ -168,6 +183,7 @@ export const generateJsonUISchemaCode = props => {
           isLastChild &&
           el.title === "items"
         ) {
+          if (isLastChild) code+= '}';
           if (el.children && el.children.length > 1) {
             code += `],`;
           }
