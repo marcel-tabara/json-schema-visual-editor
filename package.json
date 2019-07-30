@@ -5,8 +5,9 @@
   "main": "src/app/index.js",
   "scripts": {
     "test": "",
-    "start": "parcel src/app/index.html --open",
-    "server": "nodemon ./server.js"
+    "client": "parcel src/app/index.html --open",
+    "server": "nodemon ./server.js",
+    "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "browserslist": [
     "last 1 Chrome version"
