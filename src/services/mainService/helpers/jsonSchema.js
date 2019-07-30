@@ -54,7 +54,7 @@ export const generateJsonSchemaCode = props => {
           if (el.children && el.children.length > 1) {
             code += `"${el.title}": [`;
           } else {
-            code += `"${el.title}": `;
+            code += el.children ? `"${el.title}": ` : `"${el.title}": [],`;
           }
         }
 

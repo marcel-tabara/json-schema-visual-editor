@@ -19,12 +19,18 @@ export const generateJsonUISchemaCode = props => {
     jsonForm.map(el => {
       if (el.title) {
         let isChild,
+          isFirstChild,
           isLastChild = false;
         let parent = null;
         const uiSchema = get(el, "uiSchema", null);
         const flatElement = flatData.find(
           element => element.node.title === el.title
         );
+        const isPrimitive =
+          el.subtitle === "String" ||
+          el.subtitle === "Integer" ||
+          el.subtitle === "Boolean" ||
+          el.subtitle === "Number";
 
         const hasUiOptions = uiSchema && !isEmpty(uiSchema.uiOptions);
 
@@ -34,18 +40,39 @@ export const generateJsonUISchemaCode = props => {
           isLastChild = isChild
             ? parent.children[parent.children.length - 1].title === el.title
             : false;
+          isFirstChild = isChild
+            ? parent.children[0].title === el.title
+            : false;
         }
 
-        if (isChild && parent.type === "object" && el.title !== "properties") {
-          if (!isEmpty(el.title)) code += `"${el.title}": {`;
+        if (
+          isChild &&
+          parent.type === "object" &&
+          el.title !== "properties" &&
+          !isEmpty(el.title)
+        ) {
+          if (isFirstChild) code += `{`;
+          code += `"${el.title}": {`;
         }
 
         if (isChild && parent.type === "array" && el.title === "items") {
-          if (!isEmpty(el.title)) code += `"${el.title}": [`;
+          if (el.children && el.children.length > 1) {
+            code += `"${el.title}": [`;
+          } else {
+            code += `"${el.title}": {`;
+          }
         }
 
-        if (isChild && parent.type === "array" && el.title !== "items") {
-          if (!isEmpty(el.title)) code += `{`;
+        if (
+          isChild &&
+          parent.type === "array" &&
+          el.title !== "items" &&
+          !isEmpty(el.title)
+        ) {
+          if (parent.children.length > 1) {
+            if (el.subtitle !== "Object" && el.subtitle !== "Array")
+              code += `{`;
+          }
         }
 
         if (!isEmpty(el.children)) prepareJsonFormUICode(el.children);
@@ -64,13 +91,13 @@ export const generateJsonUISchemaCode = props => {
         if (hasUiOptions) code += `"ui:options": {`;
 
         if (has(uiSchema, "uiOptions.addable"))
-          code += `"addable": ${uiSchema.uiOptions.addable},`;
+          code += `"addable": ${uiSchema.uiOptions.addable || false},`;
 
         if (has(uiSchema, "uiOptions.orderable"))
-          code += `"orderable": ${uiSchema.uiOptions.orderable},`;
+          code += `"orderable": ${uiSchema.uiOptions.orderable || false},`;
 
         if (has(uiSchema, "uiOptions.removable"))
-          code += `"removable": ${uiSchema.uiOptions.removable},`;
+          code += `"removable": ${uiSchema.uiOptions.removable || false},`;
 
         if (has(uiSchema, "uiOptions.uiInline"))
           code += `"inline": ${uiSchema.uiOptions.uiInline},`;
@@ -124,13 +151,29 @@ export const generateJsonUISchemaCode = props => {
           isChild &&
           parent.type === "object" &&
           isLastChild &&
-          el.title !== "properties"
+          el.title !== "properties" &&
+          !isEmpty(el.title)
         ) {
-          if (!isEmpty(el.title)) code += `},`;
+          code += `},`;
         }
 
-        if (isChild && parent.type === "array" && el.title !== "items") {
-          if (!isEmpty(el.title)) code += `},`;
+        // if (isChild && parent.type === "array" && el.title !== "items") {
+        //   //if (!isEmpty(el.title) && el.subtitle === "Object") code += `},`;
+        //   if (!isEmpty(el.title) && parent.children.length > 1) code += `},`;
+        // }
+
+        if (
+          isChild &&
+          parent.type === "array" &&
+          el.title !== "items" &&
+          !isEmpty(el.title)
+        ) {
+          if (parent.children.length > 1) {
+            //if (el.subtitle === "Object") code += `},`;
+            //if (el.subtitle === "Object" && isLastChild) code += `},`;
+            if (el.subtitle !== "Object" && el.subtitle !== "Array")
+              code += `},`;
+          }
         }
 
         if (
@@ -139,16 +182,21 @@ export const generateJsonUISchemaCode = props => {
           isLastChild &&
           el.title === "items"
         ) {
-          if (!isEmpty(el.title)) code += `],`;
+          if (el.children && el.children.length > 1) {
+            code += `}],`;
+          } else {
+            code += `},`;
+          }
         }
 
         if (
           isChild &&
           parent.type === "object" &&
           !isLastChild &&
-          el.title !== "properties"
+          el.title !== "properties" &&
+          !isEmpty(el.title)
         ) {
-          if (!isEmpty(el.title)) code += `},`;
+          code += `},`;
         }
 
         if (isEmpty(parent)) code += `}`;
