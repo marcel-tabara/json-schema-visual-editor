@@ -26,11 +26,6 @@ export const generateJsonUISchemaCode = props => {
         const flatElement = flatData.find(
           element => element.node.title === el.title
         );
-        const isPrimitive =
-          el.subtitle === "String" ||
-          el.subtitle === "Integer" ||
-          el.subtitle === "Boolean" ||
-          el.subtitle === "Number";
 
         const hasUiOptions = uiSchema && !isEmpty(uiSchema.uiOptions);
 
@@ -59,7 +54,7 @@ export const generateJsonUISchemaCode = props => {
           if (el.children && el.children.length > 1) {
             code += `"${el.title}": [`;
           } else {
-            code += `"${el.title}": {`;
+            code += `"${el.title}":`;
           }
         }
 
@@ -69,10 +64,7 @@ export const generateJsonUISchemaCode = props => {
           el.title !== "items" &&
           !isEmpty(el.title)
         ) {
-          if (parent.children.length > 1) {
-            if (el.subtitle !== "Object" && el.subtitle !== "Array")
-              code += `{`;
-          }
+          if (el.subtitle !== "Object" && el.subtitle !== "Array") code += `{`;
         }
 
         if (!isEmpty(el.children)) prepareJsonFormUICode(el.children);
@@ -150,17 +142,13 @@ export const generateJsonUISchemaCode = props => {
         if (
           isChild &&
           parent.type === "object" &&
-          isLastChild &&
+          //isLastChild &&
           el.title !== "properties" &&
           !isEmpty(el.title)
         ) {
+          if (isLastChild) code += `}`;
           code += `},`;
         }
-
-        // if (isChild && parent.type === "array" && el.title !== "items") {
-        //   //if (!isEmpty(el.title) && el.subtitle === "Object") code += `},`;
-        //   if (!isEmpty(el.title) && parent.children.length > 1) code += `},`;
-        // }
 
         if (
           isChild &&
@@ -169,8 +157,6 @@ export const generateJsonUISchemaCode = props => {
           !isEmpty(el.title)
         ) {
           if (parent.children.length > 1) {
-            //if (el.subtitle === "Object") code += `},`;
-            //if (el.subtitle === "Object" && isLastChild) code += `},`;
             if (el.subtitle !== "Object" && el.subtitle !== "Array")
               code += `},`;
           }
@@ -183,20 +169,8 @@ export const generateJsonUISchemaCode = props => {
           el.title === "items"
         ) {
           if (el.children && el.children.length > 1) {
-            code += `}],`;
-          } else {
-            code += `},`;
+            code += `],`;
           }
-        }
-
-        if (
-          isChild &&
-          parent.type === "object" &&
-          !isLastChild &&
-          el.title !== "properties" &&
-          !isEmpty(el.title)
-        ) {
-          code += `},`;
         }
 
         if (isEmpty(parent)) code += `}`;
