@@ -22,7 +22,7 @@ const JsonFormUISettingsForm = props => {
 
   const { node, path } = currentUINode;
   const currentType = get(currentUINode, "node.type", "");
-  const currentWidget = get(currentUINode, "node.uiSchema.uiWidget.widget", "");
+  //const currentWidget = get(currentUINode, "node.uiSchema.uiWidget.widget", "");
 
   if (currentType === "string") {
     stringWidgetEnum = stringWidgetEnum.filter(e => e !== "file");
