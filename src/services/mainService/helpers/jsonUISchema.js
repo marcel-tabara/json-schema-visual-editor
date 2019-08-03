@@ -26,11 +26,11 @@ export const generateJsonUISchemaCode = props => {
         const flatElement = flatData.find(
           element => element.node.title === el.title
         );
-        const isPrimitive =
-          el.subtitle === "String" ||
-          el.subtitle === "Integer" ||
-          el.subtitle === "Boolean" ||
-          el.subtitle === "Number";
+        // const isPrimitive =
+        //   el.subtitle === "String" ||
+        //   el.subtitle === "Integer" ||
+        //   el.subtitle === "Boolean" ||
+        //   el.subtitle === "Number";
 
         const hasUiOptions = uiSchema && !isEmpty(uiSchema.uiOptions);
 
@@ -48,16 +48,6 @@ export const generateJsonUISchemaCode = props => {
         if (
           isChild &&
           parent.type === "object" &&
-          el.title === "properties" &&
-          !isEmpty(el.title)
-        ) {
-          if (isFirstChild && el.type === 'Object') code += `{`;
-        }
-
-
-        if (
-          isChild &&
-          parent.type === "object" &&
           el.title !== "properties" &&
           !isEmpty(el.title)
         ) {
@@ -69,18 +59,36 @@ export const generateJsonUISchemaCode = props => {
           if (el.children && el.children.length > 1) {
             code += `"${el.title}": [`;
           } else {
-            code += `"${el.title}":`;
+            code += `"${el.title}": {`;
           }
+        }
+
+        if (isChild && parent.type === "array" && parent.title === "items") {
+          if (el.subtitle === "Object") {
+            code += `"${el.title}": {`;
+          }
+          // if (el.subtitle !== "Object" && el.subtitle !== "Array") {
+          //   code += `{`;
+          // }
         }
 
         if (
           isChild &&
           parent.type === "array" &&
-          el.title !== "items" &&
+          el.subtitle === "Object" &&
           !isEmpty(el.title)
         ) {
-          if (el.subtitle !== "Object" && el.subtitle !== "Array") code += `{`;
+          code += `"${el.title}": {`;
         }
+
+        // if (
+        //   isChild &&
+        //   parent.type === "array" &&
+        //   el.title !== "items" &&
+        //   !isEmpty(el.title)
+        // ) {
+        //   if (el.subtitle !== "Object" && el.subtitle !== "Array") code += `{`;
+        // }
 
         if (!isEmpty(el.children)) prepareJsonFormUICode(el.children);
 
@@ -187,6 +195,15 @@ export const generateJsonUISchemaCode = props => {
           if (el.children && el.children.length > 1) {
             code += `],`;
           }
+        }
+
+        if (isChild && parent.type === "array" && parent.title === "items") {
+          if (el.subtitle === "Object") {
+            code += `},`;
+          }
+          // if (el.subtitle !== "Object" && el.subtitle !== "Array") {
+          //   code += `},`;
+          // }
         }
 
         if (isEmpty(parent)) code += `}`;
