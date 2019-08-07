@@ -19,10 +19,8 @@ const getNodeKey = ({ treeIndex }) => treeIndex;
 const JsonFormUISettingsForm = props => {
   const { tree, setTree, currentUINode, setCurrentUINode } = props;
   let stringWidgetEnum = stringWidgetEnumDefault;
-
   const { node, path } = currentUINode;
   const currentType = get(currentUINode, "node.type", "");
-  //const currentWidget = get(currentUINode, "node.uiSchema.uiWidget.widget", "");
 
   if (currentType === "string") {
     stringWidgetEnum = stringWidgetEnum.filter(e => e !== "file");
@@ -56,7 +54,6 @@ const JsonFormUISettingsForm = props => {
             title: "ui:widget",
             enum: getWidgetEnum(),
             parentType: currentType
-            //default: get(currentUiSchema, "uiWidget.widget", "")
           }
         }
       },
@@ -266,21 +263,26 @@ const JsonFormUISettingsForm = props => {
     );
   };
 
-  const getButtonClass = path => {
-    return isEqual(path, get(currentUINode, "path", null))
-      ? "generic-button-selected"
-      : "generic-button";
-  };
-
   const getButtons = (node, path) => {
-    if (node.title === "properties" || node.title === "items") return [];
+    if (
+      node.title === "properties" ||
+      node.title === "items" ||
+      node.title === get(currentUINode, "node.title", "")
+    )
+      return [];
     return [
       <FontAwesomeIcon
         icon={faPlusCircle}
         onClick={() => setCurrentUINode({ node, path })}
-        className={getButtonClass(path)}
+        className="generic-button"
       />
     ];
+  };
+
+  const getClassName = pathParam => {
+    return isEqual(pathParam, get(currentUINode, "path", []))
+      ? "rst__rowSelected"
+      : "";
   };
 
   const log = type => console.log.bind(console, type);
@@ -300,7 +302,8 @@ const JsonFormUISettingsForm = props => {
           shouldCopyOnOutsideDrop={shouldCopyOnOutsideDrop}
           getNodeKey={getNodeKey}
           generateNodeProps={({ node, path }) => ({
-            buttons: getButtons(node, path)
+            buttons: getButtons(node, path),
+            className: getClassName(path)
           })}
         />
       </div>
