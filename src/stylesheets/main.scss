@@ -184,3 +184,9 @@ select.form-control[size] {
 .rst__rowSelected > div.rst__rowContents {
   background-color: #5fa061;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

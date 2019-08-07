@@ -43,53 +43,64 @@ const Preview = props => {
     <>
       {showFormPreview()}
       <div className="container_editor_area">
-        <div className="editor-box">
-          <div className="labelStyle">Schema</div>
-          <AceEditor
-            mode="json"
-            theme="xcode"
-            onChange={onChange}
-            name="schemaEditor"
-            editorProps={{ $blockScrolling: true }}
-            setOptions={{
-              enableBasicAutocompletion: true,
-              enableLiveAutocompletion: true,
-              enableSnippets: false,
-              showLineNumbers: true,
-              tabSize: 2
-            }}
-            fontSize={12}
-            showPrintMargin={true}
-            showGutter={true}
-            highlightActiveLine={true}
-            value={schemaCode}
-            height="350px"
-          />
-        </div>
+        {schemaCode !== "{}" && (
+          <>
+            <div className="editor-box">
+              <div className="labelStyle">Schema</div>
+              <AceEditor
+                mode="json"
+                theme="xcode"
+                onChange={onChange}
+                name="schemaEditor"
+                editorProps={{ $blockScrolling: true }}
+                setOptions={{
+                  enableBasicAutocompletion: true,
+                  enableLiveAutocompletion: true,
+                  enableSnippets: false,
+                  showLineNumbers: true,
+                  tabSize: 2
+                }}
+                fontSize={12}
+                showPrintMargin={true}
+                showGutter={true}
+                highlightActiveLine={true}
+                value={schemaCode}
+                height="350px"
+              />
+            </div>
+          </>
+        )}
 
         <div className="editor-box">
-          <div className="labelStyle">UISchema</div>
-          <AceEditor
-            mode="json"
-            theme="xcode"
-            onChange={onChange}
-            name="uiSchemaEditor"
-            editorProps={{ $blockScrolling: true }}
-            setOptions={{
-              enableBasicAutocompletion: true,
-              enableLiveAutocompletion: true,
-              enableSnippets: false,
-              showLineNumbers: true,
-              tabSize: 2
-            }}
-            fontSize={12}
-            showPrintMargin={true}
-            showGutter={true}
-            highlightActiveLine={true}
-            value={uiSchemaCode}
-            height="350px"
-          />
+          {uiSchemaCode !== "{}" && (
+            <>
+              <div className="labelStyle">UISchema</div>
+              <AceEditor
+                mode="json"
+                theme="xcode"
+                onChange={onChange}
+                name="uiSchemaEditor"
+                editorProps={{ $blockScrolling: true }}
+                setOptions={{
+                  enableBasicAutocompletion: true,
+                  enableLiveAutocompletion: true,
+                  enableSnippets: false,
+                  showLineNumbers: true,
+                  tabSize: 2
+                }}
+                fontSize={12}
+                showPrintMargin={true}
+                showGutter={true}
+                highlightActiveLine={true}
+                value={uiSchemaCode}
+                height="350px"
+              />
+            </>
+          )}
         </div>
+        {schemaCode === "{}" && uiSchemaCode === "{}" && (
+          <div className="center">Nothing to preview</div>
+        )}
       </div>
     </>
   );
