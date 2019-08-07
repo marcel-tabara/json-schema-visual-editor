@@ -82,6 +82,16 @@ const JsonFormInfoForm = props => {
     return ["title", "description", "defaultValue", "enumVal", "enumNames"];
   };
 
+  const transformErrors = errors => {
+    return errors.map(error => {
+      if (error.name === "pattern") {
+        error.message =
+          "Only alphanumeric characters, dash and underscore are allowed";
+      }
+      return error;
+    });
+  };
+
   const schema = {
     type: "object",
     required: ["title"],
@@ -89,7 +99,8 @@ const JsonFormInfoForm = props => {
       title: {
         type: "string",
         title: "title",
-        default: ""
+        default: "",
+        pattern: "^[a-zA-Z0-9-_]+$"
       },
       description: {
         type: "string",
@@ -295,6 +306,7 @@ const JsonFormInfoForm = props => {
         onSubmit={onSubmit}
         onError={log("errors")}
         formData={node}
+        transformErrors={transformErrors}
       />
     </div>
   );
