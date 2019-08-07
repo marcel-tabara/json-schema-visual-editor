@@ -1,5 +1,6 @@
 import isEmpty from "lodash/isEmpty";
 import { getFlatDataFromTree } from "react-sortable-tree";
+import { get } from "https";
 
 export const generateJsonSchemaCode = props => {
   const { tree } = props;
@@ -29,15 +30,17 @@ export const generateJsonSchemaCode = props => {
       if (el.title) {
         let isChild = false;
         let isLastChild = false;
-        let parent = null;
+        const isObject = el.subtitle === "Object";
+        const isArray = el.subtitle === "Array";
 
         const flatElement = flatData.find(
           element => element.node.title === el.title
         );
 
-        if (!isEmpty(flatElement)) {
-          parent = flatElement.parentNode;
-        }
+        const parent = !isEmpty(flatElement) ? flatElement.parentNode : null;
+        const isParentObject = !isEmpty(parent) && parent.type === "object";
+        const isParentArray = !isEmpty(parent) && parent.type === "array";
+        const hasTitle = !isEmpty(el.title);
 
         if (!isEmpty(parent)) {
           isChild = !isEmpty(parent.children);
@@ -46,30 +49,23 @@ export const generateJsonSchemaCode = props => {
             : false;
         }
 
-        if (isChild && parent.type === "object") {
-          if (!isEmpty(el.title)) code += `"${el.title}": {`;
+        if (isChild && isParentObject && hasTitle) {
+          code += `"${el.title}": {`;
         }
 
-        if (isChild && parent.type === "array" && el.title === "items") {
-          if (el.children && el.children.length > 1) {
-            code += `"${el.title}": [`;
-          } else {
-            code += el.children ? `"${el.title}": ` : `"${el.title}": [],`;
-          }
+        if (!isEmpty(el.description))
+          code += `"description": '${el.description}',`;
+        if (!isEmpty(el.type)) code += `"type": '${el.type}',`;
+        if (!isEmpty(requiredFields) && isEmpty(parent))
+          code += `"required": ["${requiredFields.join('", "')}"],`;
+
+        if (isObject && hasTitle) {
+          code += `"properties": {`;
         }
 
-        if (isChild && parent.type === "array" && el.title !== "items") {
-          if (!isEmpty(el.title)) code += `{`;
-        }
-
-        if (el.title !== "properties" && el.title !== "items") {
-          if (!isEmpty(el.title)) code += `"title": '${el.title}',`;
-
-          if (!isEmpty(el.description))
-            code += `"description": '${el.description}',`;
-          if (!isEmpty(el.type)) code += `"type": '${el.type}',`;
-          if (!isEmpty(requiredFields) && isEmpty(parent))
-            code += `"required": ["${requiredFields.join('", "')}"],`;
+        if (isArray && hasTitle) {
+          code += `"items":`;
+          code += !isEmpty(el.children) && el.children.length > 1 ? `[{` : "{";
         }
 
         if (!isEmpty(el.children)) prepareJsonFormCode(el.children);
@@ -95,28 +91,16 @@ export const generateJsonSchemaCode = props => {
         if (!isEmpty(el.defaultValue))
           code += `"default": "${el.defaultValue}",`;
 
-        if (isChild && parent.type === "object" && isLastChild) {
-          if (!isEmpty(el.title)) code += `},`;
+        if (isChild && isParentObject && hasTitle) {
+          code += `},`;
+          if (isLastChild) code += `},`;
         }
 
-        if (isChild && parent.type === "array" && el.title !== "items") {
-          if (!isEmpty(el.title)) code += `},`;
+        if (isArray && hasTitle) {
+          code += !isEmpty(el.children) && el.children.length > 1 ? `}]` : "}";
         }
-
-        if (
-          isChild &&
-          parent.type === "array" &&
-          isLastChild &&
-          el.title === "items"
-        ) {
-          if (el.children && el.children.length > 1) {
-            code += `],`;
-          }
-        }
-
-        if (isChild && parent.type === "object" && !isLastChild) {
-          if (!isEmpty(el.title)) code += `},`;
-        }
+        if (!isEmpty(parent) && parent.type === "array" && !isLastChild)
+          code += "}, {";
 
         if (isEmpty(parent)) code += `}`;
       }

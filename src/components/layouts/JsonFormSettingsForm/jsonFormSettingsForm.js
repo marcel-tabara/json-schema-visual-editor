@@ -40,18 +40,9 @@ const JsonFormSettingsForm = props => {
         el.node.subtitle === "Boolean" ||
         el.node.subtitle === "Number";
 
-      return (
-        (jsonForm.length === 1 &&
-          (flatData[0].node.title === "properties" ||
-            flatData[0].node.title === "items")) ||
-        (isPrimitive && !isEmpty(el.node.children)) ||
-        jsonForm.length > 1 ||
-        (isPrimitive &&
-          !isEmpty(el.parentNode) &&
-          (el.parentNode.subtitle === "Object" ||
-            el.parentNode.subtitle === "Array"))
-      );
+      return jsonForm.length > 1 || (isPrimitive && !isEmpty(el.node.children));
     });
+    return true;
   };
 
   const onChange = treeData => {
