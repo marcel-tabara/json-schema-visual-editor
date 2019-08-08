@@ -174,8 +174,8 @@ const JsonFormUISettingsForm = props => {
     currentType !== "object" &&
     currentType !== "array"
   ) {
-    schema.properties = {
-      ...schema.properties,
+    schema.properties.uiOthers.properties = {
+      ...schema.properties.uiOthers.properties,
       uiPlaceholder: {
         type: "string",
         title: "ui:placeholder",

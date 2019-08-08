@@ -117,10 +117,7 @@ export const generateJsonUISchemaCode = props => {
           code += `'ui:title': "${uiSchema.uiOthers.uiTitle}",`;
         if (has(uiSchema, "uiOthers.uiHelp") && uiSchema.uiOthers.uiHelp)
           code += `"ui:help": "${uiSchema.uiOthers.uiHelp}",`;
-        if (
-          has(uiSchema, "uiOthers.uiPlaceholder") &&
-          uiSchema.uiOthers.uiPlaceholder
-        )
+        if (has(uiSchema, "uiOthers.uiPlaceholder"))
           code += `"ui:placeholder": "${uiSchema.uiOthers.uiPlaceholder}",`;
 
         if (has(uiSchema, "uiWidget.widget") && uiSchema.uiWidget.widget)
