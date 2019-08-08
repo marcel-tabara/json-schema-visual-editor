@@ -18,6 +18,7 @@ const getNodeKey = ({ treeIndex }) => treeIndex;
 
 const JsonFormUISettingsForm = props => {
   const { tree, setTree, currentUINode, setCurrentUINode } = props;
+  console.log("console: -------", currentUINode);
   let stringWidgetEnum = stringWidgetEnumDefault;
   const { node, path } = currentUINode;
   const currentType = get(currentUINode, "node.type", "");
@@ -111,12 +112,8 @@ const JsonFormUISettingsForm = props => {
           uiAutofocus: {
             type: "string",
             title: "ui:autofocus",
-            default: get(currentUiSchema, "uiOthers.uiAutofocus", "")
-          },
-          uiPlaceholder: {
-            type: "string",
-            title: "ui:placeholder",
-            default: get(currentUiSchema, "uiOthers.uiPlaceholder", "")
+            enum: ["true", "false"]
+            //default: get(currentUiSchema, "uiOthers.uiAutofocus", "")
           }
         }
       }
@@ -167,9 +164,25 @@ const JsonFormUISettingsForm = props => {
     },
     uiOthers: {
       "ui:options": { backgroundColor: "gray" },
-      uiPlaceholder: { "ui:placeholder": "Choose" }
+      uiPlaceholder: { "ui:placeholder": "Choose" },
+      uiAutofocus: { "ui:placeholder": "Choose" }
     }
   };
+
+  if (
+    currentType !== "boolean" &&
+    currentType !== "object" &&
+    currentType !== "array"
+  ) {
+    schema.properties = {
+      ...schema.properties,
+      uiPlaceholder: {
+        type: "string",
+        title: "ui:placeholder",
+        default: get(currentUiSchema, "uiOthers.uiPlaceholder", "")
+      }
+    };
+  }
 
   if (currentType === "object") {
     schema.properties.uiOptions.properties = {

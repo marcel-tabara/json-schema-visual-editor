@@ -15,7 +15,15 @@ const shouldCopyOnOutsideDrop = true;
 const getNodeKey = ({ treeIndex }) => treeIndex;
 
 const JsonFormSettingsForm = props => {
-  const { tree, setTree, setCurrentNode } = props;
+  const {
+    tree,
+    setTree,
+    setCurrentNode,
+    setCurrentUINode,
+    currentUINode
+  } = props;
+
+  if (!isEmpty(currentUINode)) setCurrentUINode({});
 
   const remove = path => {
     const newTree = removeNodeAtPath({
