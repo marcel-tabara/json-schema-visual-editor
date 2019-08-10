@@ -3,8 +3,23 @@ const http = require("http");
 const bodyParser = require("body-parser");
 const prettier = require("prettier");
 const cors = require("cors");
+const helmet = require('helmet')
 const app = express();
 app.use(cors());
+
+
+var hostname = 'localhost';
+ 
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["http:"],
+      styleSrc: ["'self'"],
+          connectSrc: [
+        "'self'",
+        "ws://" + hostname
+    ],
+    }
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
