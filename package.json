@@ -1,7 +1,7 @@
 {
   "name": "jsonschema-visual-editor",
   "version": "1.0.0",
-  "description": "visual editor for jsonschema",
+  "description": "jsonschema visual editor",
   "main": "src/app/index.js",
   "scripts": {
     "test": "",
@@ -12,8 +12,8 @@
   "browserslist": [
     "last 1 Chrome version"
   ],
-  "keywords": [],
-  "author": "M",
+  "keywords": ["jsonschema", "editor", "uischema"],
+  "author": "Marcel Tabara",
   "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
