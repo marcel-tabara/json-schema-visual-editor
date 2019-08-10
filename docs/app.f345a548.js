@@ -1721,4 +1721,4 @@ var t=require("http"),r=require("url"),o=module.exports;for(var e in t)t.hasOwnP
 },{"redux":"ZXTf","redux-saga":"YrS1","redux-logger":"hgt/","./reducers":"fxSh","./sagas/index":"5mml"}],"Focm":[function(require,module,exports) {
 "use strict";var e=require("react-redux"),t=l(require("react")),r=l(require("react-dom")),u=l(require("../components/layouts/Home")),d=l(require("../redux/store"));function l(e){return e&&e.__esModule?e:{default:e}}const a=(0,d.default)(),o=()=>{r.default.render(t.default.createElement(e.Provider,{store:a},t.default.createElement(u.default,null)),document.getElementById("react-root"))};r.default.render(t.default.createElement(e.Provider,{store:a},t.default.createElement(u.default,null)),document.getElementById("react-root"));
 },{"react-redux":"IZTr","react":"ccIB","react-dom":"x9tB","../components/layouts/Home":"Rb+q","../redux/store":"UFGh"}]},{},["Focm"], null)
-//# sourceMappingURL=app.f345a548.js.map
+//# sourceMappingURL=jsonschema-visual-editor/app.f345a548.js.map
