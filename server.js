@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(helmet.contentSecurityPolicy({
     directives: {
-    defaultSrc: ["'self', 'http://*', 'https://*'"],
+    defaultSrc: ["'self', '*', 'unsafe-inline'"],
       styleSrc: ["'self'"],
           connectSrc: [
         "'self'",
