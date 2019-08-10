@@ -1,6 +1,7 @@
 import React from "react";
 import SortableTree, { changeNodeAtPath } from "react-sortable-tree";
 import isEqual from "lodash/isEqual";
+import isEmpty from "lodash/isEmpty";
 import get from "lodash/get";
 import Form from "react-jsonschema-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,10 +19,11 @@ const getNodeKey = ({ treeIndex }) => treeIndex;
 
 const JsonFormUISettingsForm = props => {
   const { tree, setTree, currentUINode, setCurrentUINode } = props;
-  console.log("console: -------", currentUINode);
+
   let stringWidgetEnum = stringWidgetEnumDefault;
   const { node, path } = currentUINode;
   const currentType = get(currentUINode, "node.type", "");
+  //const hasInline = !isEmpty(node) && (node.type === 'string' || node.type === 'integer' || node.type === 'number') && !isEmpty(node.enumVal)
 
   if (currentType === "string") {
     stringWidgetEnum = stringWidgetEnum.filter(e => e !== "file");
@@ -83,11 +85,6 @@ const JsonFormUISettingsForm = props => {
             title: "ui:enumDisabled",
             default: get(currentUiSchema, "uiMore.uiEnumDisabled", false)
           },
-          uiInline: {
-            type: "boolean",
-            title: "inline",
-            default: get(currentUiSchema, "uiMore.uiInline", false)
-          }
         }
       },
       uiOthers: {
@@ -183,6 +180,17 @@ const JsonFormUISettingsForm = props => {
       }
     };
   }
+
+  // if (hasInline) {
+  //   schema.properties.uiOptions.properties = {
+  //     ...schema.properties.uiOptions.properties,
+  //     uiInline: {
+  //       type: "boolean",
+  //       title: "inline",
+  //       default: get(currentUiSchema, "uiMore.uiInline", false)
+  //     }
+  //   };
+  // }
 
   if (currentType === "object") {
     schema.properties.uiOptions.properties = {

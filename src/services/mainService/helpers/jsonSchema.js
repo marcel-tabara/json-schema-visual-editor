@@ -58,6 +58,10 @@ export const generateJsonSchemaCode = props => {
         if (!isEmpty(el.type)) code += `"type": '${el.type}',`;
         if (!isEmpty(requiredFields) && isEmpty(parent))
           code += `"required": ["${requiredFields.join('", "')}"],`;
+        if (el.uniqueItems)
+          code += `"uniqueItems": ${el.uniqueItems},`;
+        if (!isEmpty(el.minItems)) code += `"minItems": ${el.minItems},`;
+        if (!isEmpty(el.maxItems)) code += `"maxItems": ${el.maxItems},`;
 
         if (isObject && hasTitle) {
           code += `"properties": {`;
@@ -67,7 +71,6 @@ export const generateJsonSchemaCode = props => {
           code += `"items":`;
           code += !isEmpty(el.children) && el.children.length > 1 ? `[{` : "{";
         }
-
         if (!isEmpty(el.children)) prepareJsonFormCode(el.children);
 
         if (!isEmpty(el.excludeMinimum))
@@ -79,11 +82,8 @@ export const generateJsonSchemaCode = props => {
         if (!isEmpty(el.maximum)) code += `"maximum": ${el.maximum},`;
         if (!isEmpty(el.minLength)) code += `"minLength": ${el.minLength},`;
         if (!isEmpty(el.maxLength)) code += `"maxLength": ${el.maxLength},`;
-        if (!isEmpty(el.minItems)) code += `"minItems": ${el.minItems},`;
-        if (!isEmpty(el.maxItems)) code += `"maxItems": ${el.maxItems},`;
+
         if (!isEmpty(el.isRequired)) code += `"isRequired": ${el.isRequired},`;
-        if (!isEmpty(el.uniqueItems))
-          code += `"uniqueItems": ${el.uniqueItems},`;
         if (!isEmpty(el.multipleOf)) code += `"multipleOf": ${el.multipleOf},`;
         if (!isEmpty(el.enumVal)) code += `"enum": ${el.enumVal},`;
         if (!isEmpty(el.enumNames)) code += `"enumNames": ${el.enumNames},`;

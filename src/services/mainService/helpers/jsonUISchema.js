@@ -20,7 +20,6 @@ export const generateJsonUISchemaCode = props => {
       if (el.title) {
         let isChild = false;
         let isLastChild = false;
-        const isObject = el.subtitle === "Object";
         const isArray = el.subtitle === "Array";
         const uiSchema = get(el, "uiSchema", null);
         const hasUiOptions = uiSchema && !isEmpty(uiSchema.uiOptions);
@@ -69,17 +68,8 @@ export const generateJsonUISchemaCode = props => {
         // uiOptions
         if (hasUiOptions) code += `"ui:options": {`;
 
-        if (has(uiSchema, "uiOptions.addable"))
-          code += `"addable": ${uiSchema.uiOptions.addable || false},`;
-
-        if (has(uiSchema, "uiOptions.orderable"))
-          code += `"orderable": ${uiSchema.uiOptions.orderable || false},`;
-
-        if (has(uiSchema, "uiOptions.removable"))
-          code += `"removable": ${uiSchema.uiOptions.removable || false},`;
-
-        if (has(uiSchema, "uiOptions.uiInline"))
-          code += `"inline": ${uiSchema.uiOptions.uiInline},`;
+        // if (has(uiSchema, "uiOptions.uiInline"))
+        //   code += `"inline": ${uiSchema.uiOptions.uiInline},`;
         if (
           has(uiSchema, "uiOptions.backgroundColor") &&
           uiSchema.uiOptions.backgroundColor
@@ -127,6 +117,25 @@ export const generateJsonUISchemaCode = props => {
           if (!isLastChild) code += `},`;
           if (isLastChild) code += `},`;
         }
+
+
+
+
+
+
+        if (has(uiSchema, "uiOptions.addable") || has(uiSchema, "uiOptions.orderable") || has(uiSchema, "uiOptions.removable")) code += `"ui:options": {`;
+
+        if (has(uiSchema, "uiOptions.addable"))
+          code += `"addable": ${uiSchema.uiOptions.addable || false},`;
+
+        if (has(uiSchema, "uiOptions.orderable"))
+          code += `"orderable": ${uiSchema.uiOptions.orderable || false},`;
+
+        if (has(uiSchema, "uiOptions.removable"))
+          code += `"removable": ${uiSchema.uiOptions.removable || false},`;
+
+        if (has(uiSchema, "uiOptions.addable") || has(uiSchema, "uiOptions.orderable") || has(uiSchema, "uiOptions.removable")) code += `},`;
+
 
         if (isArray && hasTitle) {
           code += !isEmpty(el.children) && el.children.length > 1 ? `}]` : "},";
