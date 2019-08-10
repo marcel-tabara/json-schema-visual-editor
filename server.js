@@ -12,7 +12,7 @@ var hostname = 'localhost';
  
 app.use(helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["http:"],
+      defaultSrc: ["'self', 'http:', 'https:'"],
       styleSrc: ["'self'"],
           connectSrc: [
         "'self'",
