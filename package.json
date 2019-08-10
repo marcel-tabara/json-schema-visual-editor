@@ -12,7 +12,7 @@
   "browserslist": [
     "last 1 Chrome version"
   ],
-  "keywords": ["jsonschema", "editor", "uischema"],
+  "keywords": ["jsonschema", "editor", "uischema", "json"],
   "author": "Marcel Tabara",
   "license": "ISC",
   "dependencies": {
