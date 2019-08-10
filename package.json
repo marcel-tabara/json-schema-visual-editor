@@ -12,7 +12,12 @@
   "browserslist": [
     "last 1 Chrome version"
   ],
-  "keywords": ["jsonschema", "editor", "uischema", "json"],
+  "keywords": [
+    "jsonschema",
+    "editor",
+    "uischema",
+    "json"
+  ],
   "author": "Marcel Tabara",
   "license": "ISC",
   "dependencies": {
@@ -24,6 +29,7 @@
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
     "brace": "^0.11.1",
+    "concurrently": "^4.1.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
