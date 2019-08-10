@@ -10,7 +10,7 @@
     "server": "nodemon ./server.js",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "parcel build src/app/index.html",
-    "predeploy": "parcel build src/app/index.html --out-dir docs ",
+    "predeploy": "parcel build src/app/index.html --out-dir docs --public-url ./",
     "deploy": "gh-pages -d docs"
   },
   "heroku-run-build-script": true,
