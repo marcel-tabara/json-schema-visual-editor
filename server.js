@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const prettier = require("prettier");
 const cors = require("cors");
 const helmet = require('helmet');
+const favicon = require('express-favicon');
 const app = express();
 
 app.use(cors());
