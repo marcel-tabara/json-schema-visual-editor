@@ -8,7 +8,9 @@
     "client": "parcel src/app/index.html --open",
     "server": "nodemon ./server.js",
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "parcel build src/app/index.html"
+    "heroku-postbuild": "parcel build src/app/index.html",
+    "predeploy": "parcel build src/app/index.html",
+    "deploy": "gh-pages -d build"
   },
   "heroku-run-build-script": true,
   "browserslist": [
@@ -35,6 +37,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
+    "gh-pages": "^2.1.1",
     "helmet": "^3.20.0",
     "http": "0.0.0",
     "lodash": "^4.17.11",
