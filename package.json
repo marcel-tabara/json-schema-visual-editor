@@ -7,7 +7,8 @@
     "test": "",
     "client": "parcel src/app/index.html --open",
     "server": "nodemon ./server.js",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "parcel build src/app/index.html"
   },
   "heroku-run-build-script": true,
   "browserslist": [
