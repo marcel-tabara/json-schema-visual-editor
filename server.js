@@ -8,18 +8,18 @@ const app = express();
 app.use(cors());
 
 
-var hostname = 'localhost';
+// var hostname = 'localhost';
  
-app.use(helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self', 'http:', 'https:'"],
-      styleSrc: ["'self'"],
-          connectSrc: [
-        "'self'",
-        "ws://" + hostname
-    ],
-    }
-}));
+// app.use(helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: ["'self', 'http:', 'https:'"],
+//       styleSrc: ["'self'"],
+//           connectSrc: [
+//         "'self'",
+//         "ws://" + hostname
+//     ],
+//     }
+// }));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
