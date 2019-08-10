@@ -11,8 +11,8 @@ const app = express();
 app.use(cors());
 app.use(helmet.contentSecurityPolicy({
     directives: {
-    defaultSrc: ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://use.fontawesome.com'],
-      styleSrc: ["'self'"],
+    defaultSrc: ["'self'"],
+      styleSrc: ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://use.fontawesome.com'],
           connectSrc: [
         "'self'",
         "ws:"
