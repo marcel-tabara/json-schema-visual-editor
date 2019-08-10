@@ -9,6 +9,7 @@
     "server": "nodemon ./server.js",
     "start": "concurrently \"npm run server\" \"npm run client\""
   },
+  "heroku-run-build-script": true,
   "browserslist": [
     "last 1 Chrome version"
   ],
