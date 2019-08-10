@@ -5,6 +5,7 @@ const prettier = require("prettier");
 const cors = require("cors");
 const helmet = require('helmet');
 const favicon = require('express-favicon');
+const path = require('path');
 const app = express();
 
 app.use(cors());
@@ -18,7 +19,8 @@ app.use(helmet.contentSecurityPolicy({
     ],
     }
 }));
-app.use(favicon(__dirname + '/docs/favicon.ico'));
+app.use(favicon(__dirname + '/dist/favicon.ico'));
+app.use(express.static(path.join(__dirname, 'dist/')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
