@@ -3,26 +3,23 @@ const http = require("http");
 const bodyParser = require("body-parser");
 const prettier = require("prettier");
 const cors = require("cors");
-const helmet = require('helmet')
+const helmet = require('helmet');
 const app = express();
+
 app.use(cors());
-
-
-// var hostname = 'localhost';
- 
-// app.use(helmet.contentSecurityPolicy({
-//     directives: {
-//       defaultSrc: ["'self', 'http:', 'https:'"],
-//       styleSrc: ["'self'"],
-//           connectSrc: [
-//         "'self'",
-//         "ws://" + hostname
-//     ],
-//     }
-// }));
-
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'http:', 'https:'"],
+      styleSrc: ["'self'"],
+          connectSrc: [
+        "'self'",
+        "ws:"
+    ],
+    }
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 const server = http.createServer(app);
 
 app.post("/api/prettify", (req, res) => {
