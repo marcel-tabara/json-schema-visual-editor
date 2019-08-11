@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const prettier = require("prettier");
 const cors = require("cors");
 const helmet = require('helmet');
-const favicon = require('express-favicon');
 const path = require('path');
 const app = express();
 
@@ -15,11 +14,11 @@ app.use(helmet.contentSecurityPolicy({
       styleSrc: ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://use.fontawesome.com', "'unsafe-inline'"],
           connectSrc: [
         "'self'",
-        "ws://https://jsonschema-visual-editor.herokuapp.com:5000"
+        "ws://jsonschema-visual-editor.herokuapp.com:5000"
     ],
     }
 }));
-app.use(favicon(__dirname + '/dist/favicon.ico'));
+
 app.use(express.static(path.join(__dirname, 'dist/')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
