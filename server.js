@@ -15,7 +15,7 @@ app.use(helmet.contentSecurityPolicy({
       styleSrc: ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://use.fontawesome.com', "'unsafe-inline'"],
           connectSrc: [
         "'self'",
-        "ws:"
+        "ws://https://jsonschema-visual-editor.herokuapp.com:5000"
     ],
     }
 }));
