@@ -12,7 +12,7 @@ app.use(cors());
 app.use(helmet.contentSecurityPolicy({
     directives: {
     defaultSrc: ["'self'"],
-      styleSrc: ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://use.fontawesome.com', 'unsafe-inline'],
+      styleSrc: ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://use.fontawesome.com', "'unsafe-inline'"],
           connectSrc: [
         "'self'",
         "ws:"
