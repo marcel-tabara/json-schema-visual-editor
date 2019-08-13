@@ -18,7 +18,11 @@ app.use(
         "https://use.fontawesome.com",
         "'unsafe-inline'"
       ],
-      connectSrc: ["'self'", "ws:"]
+      connectSrc: [
+        "'self'",
+        "ws:",
+        "https://jsonschema-visual-editor.herokuapp.com:5000/api/prettify"
+      ]
     }
   })
 );
