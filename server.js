@@ -18,7 +18,7 @@ app.use(
         "https://use.fontawesome.com",
         "'unsafe-inline'"
       ],
-      connectSrc: ["'self'", "ws://jsonschema-visual-editor.herokuapp.com:5000"]
+      connectSrc: ["'self'", "ws:"]
     }
   })
 );
