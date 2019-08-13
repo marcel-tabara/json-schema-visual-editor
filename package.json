@@ -9,9 +9,7 @@
     "client": "parcel src/app/index.html --open --out-dir dist ",
     "server": "nodemon ./server.js",
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "parcel build src/app/index.html",
-    "predeploy": "parcel build src/app/index.html --out-dir dist --public-url jsonschema-visual-editor",
-    "deploy": "gh-pages -d docs"
+    "heroku-postbuild": "parcel build src/app/index.html"
   },
   "heroku-run-build-script": true,
   "browserslist": [
