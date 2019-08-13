@@ -18,9 +18,10 @@ app.use(
         "https://use.fontawesome.com",
         "'unsafe-inline'"
       ],
+      imgSrc: ["'self'", "data:"],
       connectSrc: [
         "'self'",
-        "https://jsonschema-visual-editor.herokuapp.com:5000/api/prettify"
+        "https://jsonschema-visual-editor.herokuapp.com:5000/*"
       ]
     }
   })
