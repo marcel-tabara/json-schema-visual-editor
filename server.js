@@ -21,7 +21,7 @@ app.use(
       imgSrc: ["'self'", "data:"],
       connectSrc: [
         "'self'",
-        "https://jsonschema-visual-editor.herokuapp.com:5000/*"
+        "https://jsonschema-visual-editor.herokuapp.com:5000/api/prettify"
       ]
     }
   })
