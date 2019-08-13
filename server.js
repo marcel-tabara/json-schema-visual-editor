@@ -19,6 +19,7 @@ app.use(
         "'unsafe-inline'"
       ],
       scriptSrc: ["'self'", "'unsafe-eval'"],
+      fontSrcs: ["'self'"],
       imgSrc: ["'self'", "data:"],
       connectSrc: [
         "'self'",
