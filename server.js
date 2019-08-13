@@ -18,6 +18,7 @@ app.use(
         "https://use.fontawesome.com",
         "'unsafe-inline'"
       ],
+      scriptSrc: ["'self'", "'unsafe-eval'"],
       imgSrc: ["'self'", "data:"],
       connectSrc: [
         "'self'",
