@@ -20,7 +20,6 @@ app.use(
       ],
       connectSrc: [
         "'self'",
-        "ws:",
         "https://jsonschema-visual-editor.herokuapp.com:5000/api/prettify"
       ]
     }
