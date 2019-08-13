@@ -11,7 +11,7 @@ app.use(cors());
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'", "https://jsonschema-visual-editor.herokuapp.com/"],
+      defaultSrc: ["'self'"],
       styleSrc: [
         "'self'",
         "https://maxcdn.bootstrapcdn.com",
@@ -21,7 +21,8 @@ app.use(
       imgSrc: ["'self'", "data:"],
       connectSrc: [
         "'self'",
-        "https://jsonschema-visual-editor.herokuapp.com:5000/api/prettify"
+        "ws:",
+        "http://localhost:5000/api/prettify"
       ]
     }
   })
