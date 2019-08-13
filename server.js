@@ -3,23 +3,27 @@ const http = require("http");
 const bodyParser = require("body-parser");
 const prettier = require("prettier");
 const cors = require("cors");
-const helmet = require('helmet');
-const path = require('path');
+const helmet = require("helmet");
+const path = require("path");
 const app = express();
 
 app.use(cors());
-app.use(helmet.contentSecurityPolicy({
+app.use(
+  helmet.contentSecurityPolicy({
     directives: {
-    defaultSrc: ["'self'"],
-      styleSrc: ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://use.fontawesome.com', "'unsafe-inline'"],
-          connectSrc: [
+      defaultSrc: ["'self'", "https://jsonschema-visual-editor.herokuapp.com/"],
+      styleSrc: [
         "'self'",
-        "ws://jsonschema-visual-editor.herokuapp.com:5000"
-    ],
+        "https://maxcdn.bootstrapcdn.com",
+        "https://use.fontawesome.com",
+        "'unsafe-inline'"
+      ],
+      connectSrc: ["'self'", "ws://jsonschema-visual-editor.herokuapp.com:5000"]
     }
-}));
+  })
+);
 
-app.use(express.static(path.join(__dirname, 'dist/')));
+app.use(express.static(path.join(__dirname, "dist/")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
