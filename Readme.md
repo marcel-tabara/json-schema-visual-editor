@@ -1,9 +1,9 @@
-# JsonSchema Visual Editor
+# Json Schema Visual Editor
 
 [![JSVE](https://www.dropbox.com/s/bl5tlpiiznuujob/schema.jpg?raw=1)]()
 [![JSVE](https://www.dropbox.com/s/e2aq3224ob1wnrz/preview.jpg?raw=1)]()
 
-JsonSchema Visual Editor is a simple jsonschema generator with drag and drop user interface and integration with react-jsonform uiSchema.
+Json Schema Visual Editor is a simple jsonschema generator with drag and drop user interface and integration with react-jsonform uiSchema.
 
 ### Installation
 

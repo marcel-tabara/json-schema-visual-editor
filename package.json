@@ -1,7 +1,7 @@
 {
   "name": "jsonschema-visual-editor",
   "homepage": "https://marcel-tabara.github.io/json-schema-visual-editor/",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "jsonschema visual editor",
   "main": "src/app/index.js",
   "scripts": {
