@@ -13,5 +13,5 @@ const render = () => {
     document.getElementById("react-root")
   );
 };
-
+export const getJsveStore = store.getState();
 export default render();
