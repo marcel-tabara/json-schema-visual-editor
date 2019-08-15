@@ -3,7 +3,7 @@
   "homepage": "https://marcel-tabara.github.io/json-schema-visual-editor/",
   "version": "1.0.0",
   "description": "json schema visual editor",
-  "main": "src/app/index.js",
+  "main": "dist/index.html",
   "scripts": {
     "test": "",
     "client": "parcel src/app/index.html --open --out-dir dist ",
