@@ -63,6 +63,10 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.5"
   },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
