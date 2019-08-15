@@ -7,6 +7,7 @@
   "scripts": {
     "test": "",
     "client": "parcel src/app/index.html --open --out-dir dist ",
+    "build": "parcel build src/app/index.html",
     "server": "nodemon ./server.js",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "parcel build src/app/index.html"
