@@ -16,3 +16,4 @@ public
 *.iml
 firebaseConfig.js
 package-lock.json
+dist
