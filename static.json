@@ -1,6 +1,0 @@
-{
-  "root": "dist/",
-  "headers": {
-    "Content-Security-Policy": "default-src 'self' http: https:; connect-src 'self' ws:; style-src 'self' http: 'unsafe-inline'; script-src 'self' data: gap: http:; img-src 'self' data: http: https:;"
-  }
-}
