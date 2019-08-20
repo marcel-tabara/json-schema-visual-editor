@@ -14,7 +14,7 @@
     "build": "parcel build src/app/index.html --global json-schema-visual-editor",
     "server": "nodemon ./server.js",
     "start": "concurrently --kill-others \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "parcel build dist/index.html"
+    "heroku-postbuild": "parcel build src/app/index.html"
   },
   "heroku-run-build-script": true,
   "browserslist": [
