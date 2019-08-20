@@ -7,14 +7,15 @@
     "dist",
     "src"
   ],
-  "main": "dist/index.html",
+  "main": "src/app/index.js",
   "scripts": {
     "test": "",
     "client": "parcel src/app/index.html --open --out-dir dist ",
     "build": "parcel build src/app/index.html --global json-schema-visual-editor",
     "server": "nodemon ./server.js",
-    "start": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "parcel build src/app/index.html"
+    "start": "concurrently --kill-others \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "parcel build src/app/index.html",
+    "prebuild": "rm -rf dist"
   },
   "heroku-run-build-script": true,
   "browserslist": [
