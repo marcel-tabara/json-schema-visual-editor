@@ -3,15 +3,18 @@
   "homepage": "https://marcel-tabara.github.io/json-schema-visual-editor/",
   "version": "1.0.2",
   "description": "json schema visual editor",
+  "files": [
+    "dist",
+    "src"
+  ],
   "main": "dist/index.html",
   "scripts": {
     "test": "",
     "client": "parcel src/app/index.html --open --out-dir dist ",
-    "newbuild": "parcel build src/app/index.html  --global json-schema-visual-editor",
+    "build": "parcel build src/app/index.html --global json-schema-visual-editor",
     "server": "nodemon ./server.js",
     "start": "concurrently --kill-others \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "parcel build src/app/index.html",
-    "build": "parcel build dist/index.html --public-url ./"
+    "heroku-postbuild": "parcel build dist/index.html"
   },
   "heroku-run-build-script": true,
   "browserslist": [
@@ -45,6 +48,7 @@
     "helmet": "^3.20.0",
     "http": "0.0.0",
     "lodash": "^4.17.11",
+    "nodemon": "^1.19.1",
     "parcel-bundler": "^1.12.3",
     "path": "^0.12.7",
     "prettier": "^1.18.2",
@@ -60,7 +64,11 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.5",
-    "nodemon": "^1.19.1"
+    "rollup": "^1.19.4",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-uglify": "^6.0.2"
   },
   "peerDependencies": {
     "react": "^16.8.6",
