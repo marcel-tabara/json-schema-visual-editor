@@ -9,8 +9,7 @@
     "client": "parcel src/app/index.html --open --out-dir dist ",
     "build": "parcel build src/app/index.html  --global json-schema-visual-editor",
     "server": "nodemon ./server.js",
-    "start": "concurrently \"npm run server\" \"npm run client\"",
-    "demo": "parcel dist/index.html --open ",
+    "start": "concurrently --kill-others \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "parcel build src/app/index.html"
   },
   "heroku-run-build-script": true,
@@ -18,9 +17,10 @@
     "last 1 Chrome version"
   ],
   "keywords": [
-    "jsonschema",
+    "schema",
     "editor",
     "uischema",
+    "generator",
     "json"
   ],
   "author": "Marcel Tabara",

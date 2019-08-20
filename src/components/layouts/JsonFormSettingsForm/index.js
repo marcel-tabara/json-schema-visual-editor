@@ -5,6 +5,7 @@ import {
   setCurrentNode,
   setCurrentUINode
 } from "../../../services/mainService/actions";
+import { setError } from "../../../services/mainService/actions";
 
 const mapStateToProps = state => ({
   tree: state.mainReducer.tree,
@@ -15,7 +16,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   setTree,
   setCurrentNode,
-  setCurrentUINode
+  setCurrentUINode,
+  setError
 };
 
 export default connect(

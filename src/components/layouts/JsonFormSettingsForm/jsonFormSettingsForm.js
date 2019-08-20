@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 import { defaultTree } from "../../../utils/constants";
+import { setError } from "../../../services/mainService/actions";
 
 const externalNodeType = "yourNodeType";
 const shouldCopyOnOutsideDrop = true;
@@ -20,7 +21,8 @@ const JsonFormSettingsForm = props => {
     setTree,
     setCurrentNode,
     setCurrentUINode,
-    currentUINode
+    currentUINode,
+    setError
   } = props;
 
   if (!isEmpty(currentUINode)) setCurrentUINode({});
@@ -48,14 +50,17 @@ const JsonFormSettingsForm = props => {
         el.node.subtitle === "Boolean" ||
         el.node.subtitle === "Number";
 
-      return jsonForm.length > 1 || (isPrimitive && !isEmpty(el.node.children));
+      return isPrimitive && !isEmpty(el.node.children);
     });
     return true;
   };
 
   const onChange = treeData => {
+    console.log("console: --------------------", validateJsonForm(treeData));
     if (isEmpty(validateJsonForm(treeData))) {
       setTree(treeData);
+    } else {
+      setError("Not allowed.");
     }
   };
 
