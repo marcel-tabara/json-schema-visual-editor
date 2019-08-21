@@ -7,7 +7,7 @@ Json Schema Visual Editor is a simple jsonschema generator with drag and drop us
 
 ### Installation
 
-Install the dependencies and start the server.
+Install the dependencies and start.
 
 ```sh
 $ git clone https://github.com/marcel-tabara/json-schema-visual-editor.git
@@ -15,6 +15,7 @@ $ cd json-schema-visual-editor
 $ npm install
 $ npm start
 ```
+
 ### Demo
 
 See [Demo](https://jsonschema-visual-editor.herokuapp.com)
