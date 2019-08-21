@@ -4,7 +4,8 @@
   "version": "1.0.2",
   "description": "json schema visual editor",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "repository": {
     "type": "git",
