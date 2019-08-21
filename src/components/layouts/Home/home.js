@@ -11,7 +11,7 @@ import Preview from "../Preview";
 import "../../../stylesheets/main.scss";
 
 const Home = props => {
-  const { currentNode, error } = props;
+  const { currentNode, error, setError } = props;
   const [view, setView] = useState("schema");
 
   const renderView = () =>
@@ -27,11 +27,20 @@ const Home = props => {
     );
   };
 
+  const closeAlert = () => setError("");
+
   const showError = () => {
     if (!has(error, "message")) return null;
     return (
       <div className="alertBox">
-        <Alert variant="danger">{error.message}</Alert>
+        <Alert
+          variant="danger"
+          closeLabel={"close"}
+          onClose={closeAlert}
+          dismissible
+        >
+          {error.message}
+        </Alert>
       </div>
     );
   };

@@ -56,11 +56,10 @@ const JsonFormSettingsForm = props => {
   };
 
   const onChange = treeData => {
-    console.log("console: --------------------", validateJsonForm(treeData));
     if (isEmpty(validateJsonForm(treeData))) {
       setTree(treeData);
     } else {
-      setError("Not allowed.");
+      setError({ message: "Not allowed." });
     }
   };
 
@@ -91,7 +90,7 @@ const JsonFormSettingsForm = props => {
       <div className="flex">
         <div
           style={{
-            height: 600,
+            height: window.innerHeight,
             width: "30%",
             float: "left"
           }}
@@ -106,7 +105,7 @@ const JsonFormSettingsForm = props => {
 
         <div
           style={{
-            height: 600,
+            height: window.innerHeight,
             width: "40%",
             float: "left"
           }}

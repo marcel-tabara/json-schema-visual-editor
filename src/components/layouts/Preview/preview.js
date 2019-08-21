@@ -54,9 +54,6 @@ const Preview = props => {
                 name="schemaEditor"
                 editorProps={{ $blockScrolling: true }}
                 setOptions={{
-                  enableBasicAutocompletion: true,
-                  enableLiveAutocompletion: true,
-                  enableSnippets: false,
                   showLineNumbers: true,
                   tabSize: 2
                 }}
@@ -82,9 +79,6 @@ const Preview = props => {
                 name="uiSchemaEditor"
                 editorProps={{ $blockScrolling: true }}
                 setOptions={{
-                  enableBasicAutocompletion: true,
-                  enableLiveAutocompletion: true,
-                  enableSnippets: false,
                   showLineNumbers: true,
                   tabSize: 2
                 }}
