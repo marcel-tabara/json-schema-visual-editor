@@ -71,7 +71,8 @@
     "react-sortable-tree": "^2.6.2",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^1.0.5"
+    "redux-saga": "^1.0.5",
+    "sass": "^1.17.4"
   },
   "peerDependencies": {
     "react": "^16.8.6",
