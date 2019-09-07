@@ -11,7 +11,7 @@ export function* watchSetTree(action) {
 }
 
 const prettify = (code, parser) => {
-  return axios.post("http://localhost:5000/api/prettify", code, parser);
+  return axios.post("https://jsonschema-visual-editor.herokuapp.com/api/prettify", code, parser);
 };
 
 export function* watchSetJsonForm() {
