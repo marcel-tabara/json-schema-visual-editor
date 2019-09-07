@@ -18,7 +18,7 @@ const Preview = props => {
     return null;
   };
 
-  const getButtonClass = () =>  !isEmpty(schemaCode) ? '' : 'hidden';
+  const getButtonClass = () => schemaCode !== "{}" ? '' : 'hidden';
 
   const showFormPreview = () => {
     if (has(error, "message")) return null;
