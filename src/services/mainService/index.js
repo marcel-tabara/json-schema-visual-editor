@@ -32,7 +32,7 @@ export function* watchSetJsonForm() {
     yield put(setError(e));
   }
 
-  const prettyJsonFormUISchemaCode = jsonFormUISchemaCode
+  const prettyJsonFormUISchemaCode = jsonFormUISchemaCode !== "{}"
     ? yield prettify({
         code: jsonFormUISchemaCode,
         parser
