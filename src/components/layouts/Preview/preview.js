@@ -18,24 +18,24 @@ const Preview = props => {
     return null;
   };
 
-  const onValueChange = () => {
-    return null;
-  };
+  const getButtonClass = () =>  !isEmpty(schemaCode) ? '' : 'hidden';
 
   const showFormPreview = () => {
     if (has(error, "message")) return null;
     return (
-      <Form
-        schema={JSON.parse(schemaCode)}
-        uiSchema={JSON.parse(uiSchemaCode)}
-        onChange={onChange}
-        onSubmit={onSubmit}
-        showErrorList={true}
-      >
-        <button type="submit" className="hidden">
-          Submit
+      <div className='previewForm'>
+        <Form
+          schema={JSON.parse(schemaCode)}
+          uiSchema={JSON.parse(uiSchemaCode)}
+          onChange={onChange}
+          onSubmit={onSubmit}
+          showErrorList={true}
+        >
+          <button type="submit" className={getButtonClass()}>
+            Submit
         </button>
-      </Form>
+        </Form>
+      </div>
     );
   };
 
