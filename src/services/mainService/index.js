@@ -6,10 +6,6 @@ import { generateJsonUISchemaCode } from "./helpers/jsonUISchema";
 import { setUISchemaCode, setSchemaCode, setError } from "./actions";
 import { validateSchema } from "./helpers/helper";
 
-export function* watchSetTree(action) {
-  console.log("console: saga", action);
-}
-
 const prettify = (code, parser) => {
   return axios.post("https://jsonschema-visual-editor.herokuapp.com/api/prettify", code, parser);
 };
@@ -18,9 +14,7 @@ export function* watchSetJsonForm() {
   const { tree } = (yield select()).mainReducer;
   const parser = "json";
   const jsonFormSchemaCode = generateJsonSchemaCode({ tree });
-  console.log("console: jsonFormSchemaCode", jsonFormSchemaCode);
   const jsonFormUISchemaCode = generateJsonUISchemaCode({ tree });
-  console.log("console: jsonFormUISchemaCode", jsonFormUISchemaCode);
   let prettyJsonFormSchemaCode = "";
 
   try {
