@@ -18,4 +18,4 @@ $ npm start
 
 ### Demo
 
-See [Demo](https://jsonschema-visual-editor.herokuapp.com)
+See [Demo](https://jsve.just4.dev)
