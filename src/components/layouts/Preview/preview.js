@@ -8,22 +8,18 @@ import Form from "react-jsonschema-form-bs4";
 
 const Preview = props => {
   let { schemaCode, uiSchemaCode, error } = props;
+
   if (isEmpty(schemaCode)) schemaCode = "{}";
   if (isEmpty(uiSchemaCode)) uiSchemaCode = "{}";
 
-  const onChange = () => {
-    return null;
-  };
-  const onSubmit = () => {
-    return null;
-  };
-
-  const getButtonClass = () => schemaCode !== "{}" ? '' : 'hidden';
+  const onChange = () => null;
+  const onSubmit = () => null;
+  const getButtonClass = () => (schemaCode !== "{}" ? "" : "hidden");
 
   const showFormPreview = () => {
-    if (has(error, "message")) return null;
+    if (has(error, "message")) return console.log("########## error", error);
     return (
-      <div className='previewForm'>
+      <div className="previewForm">
         <Form
           schema={JSON.parse(schemaCode)}
           uiSchema={JSON.parse(uiSchemaCode)}
@@ -33,7 +29,7 @@ const Preview = props => {
         >
           <button type="submit" className={getButtonClass()}>
             Submit
-        </button>
+          </button>
         </Form>
       </div>
     );
@@ -55,7 +51,7 @@ const Preview = props => {
                 editorProps={{ $blockScrolling: true }}
                 setOptions={{
                   showLineNumbers: true,
-                  tabSize: 2
+                  tabSize: 2,
                 }}
                 fontSize={12}
                 showPrintMargin={true}
@@ -80,7 +76,7 @@ const Preview = props => {
                 editorProps={{ $blockScrolling: true }}
                 setOptions={{
                   showLineNumbers: true,
-                  tabSize: 2
+                  tabSize: 2,
                 }}
                 fontSize={12}
                 showPrintMargin={true}

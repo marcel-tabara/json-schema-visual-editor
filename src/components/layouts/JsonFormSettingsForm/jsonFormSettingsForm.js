@@ -2,7 +2,7 @@ import React from "react";
 
 import SortableTree, {
   removeNodeAtPath,
-  getFlatDataFromTree
+  getFlatDataFromTree,
 } from "react-sortable-tree";
 import isEmpty from "lodash/isEmpty";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +10,7 @@ import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 import { defaultTree } from "../../../utils/constants";
 import { setError } from "../../../services/mainService/actions";
+import { prepareFirst } from "./helper";
 
 const externalNodeType = "yourNodeType";
 const shouldCopyOnOutsideDrop = true;
@@ -22,7 +23,7 @@ const JsonFormSettingsForm = props => {
     setCurrentNode,
     setCurrentUINode,
     currentUINode,
-    setError
+    setError,
   } = props;
 
   if (!isEmpty(currentUINode)) setCurrentUINode({});
@@ -31,33 +32,43 @@ const JsonFormSettingsForm = props => {
     const newTree = removeNodeAtPath({
       treeData: tree,
       path,
-      getNodeKey
+      getNodeKey,
     });
     setTree(newTree);
   };
 
+  const isPrimitive = subtitle =>
+    subtitle === "String" ||
+    subtitle === "Integer" ||
+    subtitle === "Boolean" ||
+    subtitle === "Number";
+
   const validateJsonForm = jsonForm => {
+    if (jsonForm.length > 1) return jsonForm;
     const flatData = getFlatDataFromTree({
       treeData: jsonForm,
       getNodeKey: ({ treeIndex }) => treeIndex,
-      ignoreCollapsed: false
+      ignoreCollapsed: false,
     });
 
     return flatData.find(el => {
-      const isPrimitive =
-        el.node.subtitle === "String" ||
-        el.node.subtitle === "Integer" ||
-        el.node.subtitle === "Boolean" ||
-        el.node.subtitle === "Number";
-
-      return isPrimitive && !isEmpty(el.node.children);
+      return isPrimitive(el.node.subtitle) && !isEmpty(el.node.children);
     });
-    return true;
   };
 
   const onChange = treeData => {
     if (isEmpty(validateJsonForm(treeData))) {
-      setTree(treeData);
+      const flatData = getFlatDataFromTree({
+        treeData,
+        getNodeKey: ({ treeIndex }) => treeIndex,
+        ignoreCollapsed: false,
+      });
+      let newTree = treeData;
+
+      flatData.map(el => {
+        newTree = prepareFirst(el, newTree);
+        setTree(newTree);
+      });
     } else {
       setError({ message: "Not allowed." });
     }
@@ -66,8 +77,6 @@ const JsonFormSettingsForm = props => {
   const setCurrentForm = (node, path) => {
     setCurrentNode({ node, path });
   };
-
-  const log = type => console.log.bind(console, type);
 
   const getButtons = ({ node, path }) => {
     if (node.title === "properties" || node.title === "items") return [];
@@ -81,7 +90,7 @@ const JsonFormSettingsForm = props => {
         icon={faPlusCircle}
         onClick={() => setCurrentForm(node, path)}
         className="generic-button"
-      />
+      />,
     ];
   };
 
@@ -92,7 +101,7 @@ const JsonFormSettingsForm = props => {
           style={{
             height: window.innerHeight,
             width: "30%",
-            float: "left"
+            float: "left",
           }}
         >
           <SortableTree
@@ -107,7 +116,7 @@ const JsonFormSettingsForm = props => {
           style={{
             height: window.innerHeight,
             width: "40%",
-            float: "left"
+            float: "left",
           }}
         >
           <SortableTree
@@ -117,7 +126,7 @@ const JsonFormSettingsForm = props => {
             shouldCopyOnOutsideDrop={shouldCopyOnOutsideDrop}
             getNodeKey={getNodeKey}
             generateNodeProps={({ node, path }) => ({
-              buttons: getButtons({ node, path })
+              buttons: getButtons({ node, path }),
             })}
           />
         </div>

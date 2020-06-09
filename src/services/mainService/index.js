@@ -7,7 +7,7 @@ import { setUISchemaCode, setSchemaCode, setError } from "./actions";
 import { validateSchema } from "./helpers/helper";
 
 const prettify = (code, parser) => {
-  return axios.post("https://jsonschema-visual-editor.herokuapp.com/api/prettify", code, parser);
+  return axios.post("http://localhost:5000/api/prettify", code, parser);
 };
 
 export function* watchSetJsonForm() {
@@ -21,7 +21,7 @@ export function* watchSetJsonForm() {
     prettyJsonFormSchemaCode = jsonFormSchemaCode
       ? yield prettify({
           code: jsonFormSchemaCode,
-          parser
+          parser,
         })
       : "";
     const schema = prettyJsonFormSchemaCode.data || {};
@@ -32,12 +32,13 @@ export function* watchSetJsonForm() {
     yield put(setError(e));
   }
 
-  const prettyJsonFormUISchemaCode = jsonFormUISchemaCode !== "{}"
-    ? yield prettify({
-        code: jsonFormUISchemaCode,
-        parser
-      })
-    : "";
+  const prettyJsonFormUISchemaCode =
+    jsonFormUISchemaCode !== "{}"
+      ? yield prettify({
+          code: jsonFormUISchemaCode,
+          parser,
+        })
+      : "";
 
   yield put(setUISchemaCode(prettyJsonFormUISchemaCode.data));
 }

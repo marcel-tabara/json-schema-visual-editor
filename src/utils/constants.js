@@ -1,30 +1,30 @@
 export const defaultTree = [
   {
     title: "",
-    subtitle: "String"
+    subtitle: "String",
   },
   {
     title: "",
-    subtitle: "Number"
+    subtitle: "Number",
   },
   {
     title: "",
-    subtitle: "Integer"
+    subtitle: "Integer",
   },
   {
     title: "",
-    subtitle: "Boolean"
+    subtitle: "Boolean",
   },
   {
     title: "",
     subtitle: "Object",
-    expanded: true
+    expanded: true,
   },
   {
     title: "",
     subtitle: "Array",
-    expanded: true
-  }
+    expanded: true,
+  },
 ];
 
 export const booleanWidgetEnum = ["radio", "select", "checkbox", "hidden"];
@@ -33,7 +33,7 @@ export const stringWidgetEnumDefault = [
   "password",
   "text",
   "textarea",
-  "hidden"
+  "hidden",
 ];
 export const integerWidgetEnum = ["updown", "range", "radio", "hidden"];
 export const html5InputTypesEnum = [
@@ -56,5 +56,5 @@ export const html5InputTypesEnum = [
   "time",
   "url",
   "week",
-  "hidden"
+  "hidden",
 ];

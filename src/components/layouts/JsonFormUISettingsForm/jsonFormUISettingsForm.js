@@ -10,10 +10,10 @@ import {
   booleanWidgetEnum,
   stringWidgetEnumDefault,
   integerWidgetEnum,
-  html5InputTypesEnum
+  html5InputTypesEnum,
 } from "../../../utils/constants";
 
-const externalNodeType = "yourNodeType";
+const externalNodeType = "uiSchemaNodeType";
 const shouldCopyOnOutsideDrop = true;
 const getNodeKey = ({ treeIndex }) => treeIndex;
 
@@ -56,14 +56,14 @@ const JsonFormUISettingsForm = props => {
             type: "string",
             title: "ui:widget",
             enum: getWidgetEnum(),
-            parentType: currentType
-          }
-        }
+            parentType: currentType,
+          },
+        },
       },
       uiOptions: {
         type: "object",
         title: "ui:options",
-        properties: {}
+        properties: {},
       },
       uiMore: {
         type: "object",
@@ -72,20 +72,20 @@ const JsonFormUISettingsForm = props => {
           uiDisabled: {
             type: "boolean",
             title: "ui:disabled",
-            default: get(currentUiSchema, "uiMore.uiDisabled", false)
+            default: get(currentUiSchema, "uiMore.uiDisabled", false),
           },
           uiReadonly: {
             type: "boolean",
             title: "ui:readonly",
-            default: get(currentUiSchema, "uiMore.uiReadonly", false)
+            default: get(currentUiSchema, "uiMore.uiReadonly", false),
           },
 
           uiEnumDisabled: {
             type: "boolean",
             title: "ui:enumDisabled",
-            default: get(currentUiSchema, "uiMore.uiEnumDisabled", false)
+            default: get(currentUiSchema, "uiMore.uiEnumDisabled", false),
           },
-        }
+        },
       },
       uiOthers: {
         type: "object",
@@ -94,26 +94,26 @@ const JsonFormUISettingsForm = props => {
           uiHelp: {
             type: "string",
             title: "ui:help",
-            default: get(currentUiSchema, "uiOthers.uiHelp", "")
+            default: get(currentUiSchema, "uiOthers.uiHelp", ""),
           },
           uiTitle: {
             type: "string",
             title: "ui:title",
-            default: get(currentUiSchema, "uiOthers.uiTitle", "")
+            default: get(currentUiSchema, "uiOthers.uiTitle", ""),
           },
           uiDescription: {
             type: "string",
             title: "ui:description",
-            default: get(currentUiSchema, "uiOthers.uiDescription", "")
+            default: get(currentUiSchema, "uiOthers.uiDescription", ""),
           },
           uiAutofocus: {
             type: "string",
             title: "ui:autofocus",
-            enum: ["true", "false"]
+            enum: ["true", "false"],
             //default: get(currentUiSchema, "uiOthers.uiAutofocus", "")
-          }
-        }
-      }
+          },
+        },
+      },
     },
     dependencies: {
       uiWidget: {
@@ -122,48 +122,48 @@ const JsonFormUISettingsForm = props => {
             properties: {
               uiWidget: {
                 properties: {
-                  widget: { enum: ["color"] }
-                }
-              }
-            }
+                  widget: { enum: ["color"] },
+                },
+              },
+            },
           },
           {
             properties: {
               uiWidget: {
                 properties: {
-                  widget: { enum: ["textarea"] }
-                }
+                  widget: { enum: ["textarea"] },
+                },
               },
               uiOptions: {
                 properties: {
                   rows: {
                     type: "integer",
                     title: "rows",
-                    default: get(currentUiSchema, "uiOptions.rows", 10)
-                  }
-                }
-              }
-            }
-          }
-        ]
-      }
-    }
+                    default: get(currentUiSchema, "uiOptions.rows", 10),
+                  },
+                },
+              },
+            },
+          },
+        ],
+      },
+    },
   };
 
   const uiSchema = {
     uiWidget: {
       widget: {
-        "ui:placeholder": "Choose a type"
-      }
+        "ui:placeholder": "Choose a type",
+      },
     },
     uiOptions: {
-      "ui:placeholder": "Choose a type"
+      "ui:placeholder": "Choose a type",
     },
     uiOthers: {
       "ui:options": { backgroundColor: "gray" },
       uiPlaceholder: { "ui:placeholder": "Choose" },
-      uiAutofocus: { "ui:placeholder": "Choose" }
-    }
+      uiAutofocus: { "ui:placeholder": "Choose" },
+    },
   };
 
   if (
@@ -176,8 +176,8 @@ const JsonFormUISettingsForm = props => {
       uiPlaceholder: {
         type: "string",
         title: "ui:placeholder",
-        default: get(currentUiSchema, "uiOthers.uiPlaceholder", "")
-      }
+        default: get(currentUiSchema, "uiOthers.uiPlaceholder", ""),
+      },
     };
   }
 
@@ -195,14 +195,14 @@ const JsonFormUISettingsForm = props => {
   if (currentType === "object") {
     schema.properties.uiOptions.properties = {
       ...schema.properties.uiOptions.properties,
-      expandable: { type: "boolean", title: "expandable" }
+      expandable: { type: "boolean", title: "expandable" },
     };
 
     schema.properties = {
       ...schema.properties,
       uiWidget: {},
       uiOthers: {},
-      uiMore: {}
+      uiMore: {},
     };
   }
   if (currentType === "array") {
@@ -210,13 +210,13 @@ const JsonFormUISettingsForm = props => {
       ...schema.properties.uiOptions.properties,
       orderable: { type: "boolean", title: "orderable" },
       addable: { type: "boolean", title: "addable" },
-      removable: { type: "boolean", title: "removable" }
+      removable: { type: "boolean", title: "removable" },
     };
     schema.properties = {
       ...schema.properties,
       uiWidget: {},
       uiOthers: {},
-      uiMore: {}
+      uiMore: {},
     };
   }
 
@@ -226,24 +226,24 @@ const JsonFormUISettingsForm = props => {
       label: {
         type: "boolean",
         title: "hasLabel",
-        default: get(currentUiSchema, "uiOptions.label", true)
+        default: get(currentUiSchema, "uiOptions.label", true),
       },
       classNames: {
         type: "string",
         title: "classNames",
-        default: get(currentUiSchema, "uiOptions.classNames", "")
+        default: get(currentUiSchema, "uiOptions.classNames", ""),
       },
       inputType: {
         type: "string",
         title: "inputType",
-        enum: html5InputTypesEnum
+        enum: html5InputTypesEnum,
         //default: get(currentUiSchema, "uiOptions.inputType", "text")
       },
       backgroundColor: {
         type: "string",
         title: "backgroundColor",
-        default: get(currentUiSchema, "uiOptions.backgroundColor", "")
-      }
+        default: get(currentUiSchema, "uiOptions.backgroundColor", ""),
+      },
     };
   }
 
@@ -253,7 +253,6 @@ const JsonFormUISettingsForm = props => {
 
   const onSubmit = data => {
     const { formData } = data;
-
     const newNode = { ...node };
     newNode.uiSchema = formData;
 
@@ -261,7 +260,7 @@ const JsonFormUISettingsForm = props => {
       treeData: tree,
       path,
       getNodeKey,
-      newNode
+      newNode,
     });
 
     setTree(newTree);
@@ -276,7 +275,6 @@ const JsonFormUISettingsForm = props => {
           uiSchema={uiSchema}
           onChange={onChange}
           onSubmit={onSubmit}
-          onError={log("errors")}
           formData={currentUiSchema}
           showErrorList={true}
         />
@@ -296,7 +294,7 @@ const JsonFormUISettingsForm = props => {
         icon={faPlusCircle}
         onClick={() => setCurrentUINode({ node, path })}
         className="generic-button"
-      />
+      />,
     ];
   };
 
@@ -306,14 +304,13 @@ const JsonFormUISettingsForm = props => {
       : "";
   };
 
-  const log = type => console.log.bind(console, type);
   return (
     <div className="flex">
       <div
         style={{
           width: "45%",
           float: "left",
-          height: "500px"
+          height: "500px",
         }}
       >
         <SortableTree
@@ -324,7 +321,7 @@ const JsonFormUISettingsForm = props => {
           getNodeKey={getNodeKey}
           generateNodeProps={({ node, path }) => ({
             buttons: getButtons(node, path),
-            className: getClassName(path)
+            className: getClassName(path),
           })}
         />
       </div>

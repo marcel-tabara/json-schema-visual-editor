@@ -16,7 +16,7 @@ const JsonFormInfoForm = props => {
     "integer",
     "number",
     "object",
-    "array"
+    "array",
   ];
   const stringFormatWidgetEnum = [
     "default",
@@ -24,7 +24,7 @@ const JsonFormInfoForm = props => {
     "uri",
     "data-url",
     "date",
-    "date-time"
+    "date-time",
   ];
 
   const getNodeKey = ({ treeIndex }) => treeIndex;
@@ -42,7 +42,7 @@ const JsonFormInfoForm = props => {
         "maxLength",
         "enumVal",
         "enumNames",
-        "isRequired"
+        "isRequired",
       ];
     }
     if (node.subtitle === "Number") {
@@ -57,7 +57,7 @@ const JsonFormInfoForm = props => {
         "multipleOf",
         "enumVal",
         "enumNames",
-        "isRequired"
+        "isRequired",
       ];
     }
     if (node.subtitle === "Integer") {
@@ -72,7 +72,7 @@ const JsonFormInfoForm = props => {
         "multipleOf",
         "enumVal",
         "enumNames",
-        "isRequired"
+        "isRequired",
       ];
     }
     if (node.subtitle === "Array") {
@@ -87,7 +87,7 @@ const JsonFormInfoForm = props => {
       "defaultValue",
       "enumVal",
       "enumNames",
-      "isRequired"
+      "isRequired",
     ];
   };
 
@@ -109,21 +109,21 @@ const JsonFormInfoForm = props => {
         type: "string",
         title: "title",
         default: "",
-        pattern: "^[a-zA-Z0-9-_]+$"
+        pattern: "^[a-zA-Z0-9-_]+$",
       },
       description: {
         type: "string",
         title: "description",
-        default: ""
-      }
-    }
+        default: "",
+      },
+    },
   };
   const uiSchema = {
     format: {
       "ui:widget": "select",
-      "ui:placeholder": "Choose a format"
+      "ui:placeholder": "Choose a format",
     },
-    "ui:order": getUIOrder()
+    "ui:order": getUIOrder(),
   };
 
   if (node.subtitle !== "Object" && node.subtitle !== "Array") {
@@ -132,13 +132,13 @@ const JsonFormInfoForm = props => {
       isRequired: {
         type: "boolean",
         title: "isRequired",
-        default: false
+        default: false,
       },
       defaultValue: {
         type: "string",
         title: "default",
-        default: ""
-      }
+        default: "",
+      },
     };
   }
 
@@ -149,23 +149,23 @@ const JsonFormInfoForm = props => {
         type: "string",
         title: "Format",
         enum: stringFormatWidgetEnum,
-        default: "default"
+        default: "default",
       },
       minLength: {
         type: "string",
         title: "minLength",
-        default: ""
+        default: "",
       },
       maxLength: {
         type: "string",
         title: "maxLength",
-        default: ""
+        default: "",
       },
       pattern: {
         type: "string",
         title: "pattern",
-        default: ""
-      }
+        default: "",
+      },
     };
   }
 
@@ -175,28 +175,28 @@ const JsonFormInfoForm = props => {
       minimum: {
         type: "string",
         title: "Minimum",
-        default: ""
+        default: "",
       },
       maximum: {
         type: "string",
         title: "Maximum",
-        default: ""
+        default: "",
       },
       multipleOf: {
         type: "string",
         title: "multipleOf",
-        default: ""
+        default: "",
       },
       excludeMinimum: {
         type: "boolean",
         title: "excludeMinimum",
-        default: false
+        default: false,
       },
       excludeMaximum: {
         type: "boolean",
         title: "excludeMaximum",
-        default: false
-      }
+        default: false,
+      },
     };
   }
 
@@ -206,18 +206,18 @@ const JsonFormInfoForm = props => {
       minItems: {
         type: "string",
         title: "minItems",
-        default: ""
+        default: "",
       },
       maxItems: {
         type: "string",
         title: "maxItems",
-        default: ""
+        default: "",
       },
       uniqueItems: {
         type: "boolean",
         title: "uniqueItems",
-        default: false
-      }
+        default: false,
+      },
     };
   }
 
@@ -227,17 +227,17 @@ const JsonFormInfoForm = props => {
       enumVal: {
         type: "string",
         title: "Enum",
-        default: ""
+        default: "",
       },
       enumNames: {
         type: "string",
         title: "EnumNames",
-        default: ""
-      }
+        default: "",
+      },
     };
   }
 
-  const onSubmit = data => {
+  const onSubmit = ({ formData }) => {
     const {
       title,
       description,
@@ -256,8 +256,8 @@ const JsonFormInfoForm = props => {
       maxLength,
       pattern,
       excludeMinimum,
-      excludeMaximum
-    } = data.formData;
+      excludeMaximum,
+    } = formData;
 
     const newNode = { ...node };
     newNode.title = title;
@@ -287,7 +287,7 @@ const JsonFormInfoForm = props => {
       treeData: tree,
       path,
       getNodeKey,
-      newNode
+      newNode,
     });
 
     setTree(newTree);

@@ -9,7 +9,7 @@ export const generateJsonSchemaCode = props => {
   const flatData = getFlatDataFromTree({
     treeData: tree,
     getNodeKey: ({ treeIndex }) => treeIndex,
-    ignoreCollapsed: false
+    ignoreCollapsed: false,
   });
 
   const getRequiredFields = () => {
@@ -22,7 +22,6 @@ export const generateJsonSchemaCode = props => {
   };
 
   const requiredFields = getRequiredFields();
-
   if (!isEmpty(tree) && tree[0].title) code += `{`;
 
   const prepareJsonFormCode = jsonForm => {
@@ -38,8 +37,7 @@ export const generateJsonSchemaCode = props => {
         );
 
         const parent = !isEmpty(flatElement) ? flatElement.parentNode : null;
-        const isParentObject = !isEmpty(parent) && parent.type === "object";
-        const isParentArray = !isEmpty(parent) && parent.type === "array";
+        const hasParentObject = !isEmpty(parent) && parent.type === "object";
         const hasTitle = !isEmpty(el.title);
 
         if (!isEmpty(parent)) {
@@ -49,7 +47,7 @@ export const generateJsonSchemaCode = props => {
             : false;
         }
 
-        if (isChild && isParentObject && hasTitle) {
+        if (isChild && hasParentObject && hasTitle) {
           code += `"${el.title}": {`;
         }
 
@@ -58,8 +56,7 @@ export const generateJsonSchemaCode = props => {
         if (!isEmpty(el.type)) code += `"type": '${el.type}',`;
         if (!isEmpty(requiredFields) && isEmpty(parent))
           code += `"required": ["${requiredFields.join('", "')}"],`;
-        if (el.uniqueItems)
-          code += `"uniqueItems": ${el.uniqueItems},`;
+        if (el.uniqueItems) code += `"uniqueItems": ${el.uniqueItems},`;
         if (!isEmpty(el.minItems)) code += `"minItems": ${el.minItems},`;
         if (!isEmpty(el.maxItems)) code += `"maxItems": ${el.maxItems},`;
 
@@ -91,7 +88,7 @@ export const generateJsonSchemaCode = props => {
         if (!isEmpty(el.defaultValue))
           code += `"default": "${el.defaultValue}",`;
 
-        if (isChild && isParentObject && hasTitle) {
+        if (isChild && hasParentObject && hasTitle) {
           code += `},`;
           if (isLastChild) code += `},`;
         }
