@@ -1,4 +1,4 @@
-# Json Schema Visual Editor
+# Json Schema Visual Editor - Depricated
 
 [![JSVE](https://www.dropbox.com/s/bl5tlpiiznuujob/schema.jpg?raw=1)]()
 [![JSVE](https://www.dropbox.com/s/e2aq3224ob1wnrz/preview.jpg?raw=1)]()
