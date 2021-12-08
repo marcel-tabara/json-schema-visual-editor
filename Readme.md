@@ -16,6 +16,3 @@ $ npm install
 $ npm start
 ```
 
-### Demo
-
-See [Demo](https://jsve.just4.dev)
